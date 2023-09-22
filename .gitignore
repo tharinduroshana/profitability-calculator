@@ -4,3 +4,7 @@ frontend/.idea
 frontend/.vscode
 
 ProfitabilityCalculatorBackend/.idea
+ProfitabilityCalculatorBackend/ProfitabilityCalculator/bin
+ProfitabilityCalculatorBackend/ProfitabilityCalculator/obj
+ProfitabilityCalculatorBackend/ProfitabilityCalculator.Contracts/bin
+ProfitabilityCalculatorBackend/ProfitabilityCalculator.Contracts/obj
