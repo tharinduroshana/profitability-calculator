@@ -2,6 +2,12 @@
 import Button from "@/components/Button.vue";
 import InputBox from "@/components/InputBox.vue";
 import {InputSizes, InputTypes} from "@/utils/enums";
+
+/*
+* ProfitabilityCalculator Screen
+*
+* This view shows the form component to calculate Profitability
+* */
 </script>
 
 <template>
