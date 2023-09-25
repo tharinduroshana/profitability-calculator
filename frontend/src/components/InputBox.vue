@@ -7,7 +7,9 @@ import {InputTypes} from "@/utils/enums";
 * @label: Label for the Input Box
 * @size: Applies as the class name to declare size of the input field
 * @type: Type of the input field
+* @disabled: Sets disabled property for input element
 * @placeholder: Placeholder text for the component
+* @modelValue: Takes v-model value from parent component (Input value for input element).
 * */
 
 export default {
@@ -22,8 +24,13 @@ export default {
       type: String,
       default: InputTypes.TEXT
     },
-    placeholder: String
-  }
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    placeholder: String,
+    modelValue: String
+  },
 }
 </script>
 
@@ -31,7 +38,10 @@ export default {
   <div :class="size">
     <div class="form-group">
       <span class="form-label">{{ label }}</span>
-      <input class="form-control" :type="type" :placeholder="placeholder">
+      <input :class="['form-control', disabled ? 'disabled-input' : '']" :value="modelValue" :type="type"
+             :disabled="disabled"
+             @input="$emit('update:modelValue', $event.target.value)"
+             :placeholder="placeholder">
     </div>
   </div>
 </template>

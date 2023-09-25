@@ -5,6 +5,10 @@
     background-position: center;
 }
 
+body {
+    background-color: black;
+}
+
 .title {
     color: white;
     font-size: 30px;
@@ -188,4 +192,8 @@
 .general-form .submit-btn:hover,
 .general-form .submit-btn:focus {
     opacity: 0.9;
+}
+
+.general-form .form-control.disabled-input {
+    background-color: #dddddd;
 }
