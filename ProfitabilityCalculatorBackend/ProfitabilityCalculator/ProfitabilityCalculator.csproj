@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\ProfitabilityCalculator.Contracts\ProfitabilityCalculator.Contracts.csproj" />
   </ItemGroup>
+
 
 </Project>
