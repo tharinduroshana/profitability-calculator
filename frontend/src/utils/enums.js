@@ -20,3 +20,11 @@ export const InputTypes = {
     NUMBER: "number",
     DATE: "date"
 }
+
+/*
+* ButtonTypes enum declares the types for Buttons
+* */
+export const ButtonTypes = {
+    BUTTON: "button",
+    SUBMIT: "submit"
+}
