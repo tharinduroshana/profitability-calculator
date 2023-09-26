@@ -7,5 +7,7 @@ public record ProfitabilityCalculationResponse(
     double NoOfKilometres,
     double NoOfHours,
     double Income,
+    double TotalDistanceBasedCost,
+    double TotalTimeBasedCost,
     double Profitability
 );

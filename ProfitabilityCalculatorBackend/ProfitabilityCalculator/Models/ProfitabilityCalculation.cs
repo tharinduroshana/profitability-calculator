@@ -13,6 +13,10 @@ public class ProfitabilityCalculation
     public double NoOfHours { get; set; }
 
     public double Income { get; set; }
+    
+    public double TotalDistanceBasedCost { get; set; }
+    
+    public double TotalTimeBasedCost { get; set; }
 
     public double Profitability { get; set; }
 
