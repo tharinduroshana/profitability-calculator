@@ -17,13 +17,11 @@ export default {
   data() {
     return {
       isLoading: false,
-      isResultReady: false,
       pricePerKilometre: "",
       pricePerHour: "",
       noOfKilometres: "",
       noOfHours: "",
       income: "",
-      profitability: 0
     }
   },
   methods: {
@@ -40,9 +38,8 @@ export default {
       //TODO: Send the request to server and update the profitability input value.
       setTimeout(() => {
         // This setTimeout replicates the behavior of the request
-        this.profitability = "60.0";
         this.isLoading = false;
-        this.isResultReady = true;
+        this.$router.push({ name: "results", replace: true });
       }, 2000);
     }
   }
@@ -71,10 +68,6 @@ export default {
         </div>
         <div class="row">
           <InputBox v-model="income" :size="InputSizes.FULL" label="Income" placeholder="Total income"
-                    :type="InputTypes.NUMBER"/>
-        </div>
-        <div class="row" v-if="isResultReady">
-          <InputBox v-model="profitability" :size="InputSizes.FULL" label="Profitability" :disabled="true"
                     :type="InputTypes.NUMBER"/>
         </div>
         <div class="row" v-if="isLoading">

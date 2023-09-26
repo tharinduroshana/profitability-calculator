@@ -1,9 +1,10 @@
 <script>
 import CalculatorView from "./views/CalculatorView.vue";
+import CalculationResultsView from "@/views/CalculationResultsView.vue";
 
 export default {
   name: "App",
-  components: {CalculatorView},
+  components: {CalculationResultsView, CalculatorView},
   data() {
     return {
       isMobile: false
@@ -34,7 +35,7 @@ export default {
   <div id="body-area" class="section">
     <div :class="this.isMobile ? 'section-center-mobile' : 'section-center'">
       <div class="container">
-        <CalculatorView />
+        <router-view></router-view>
       </div>
     </div>
   </div>
