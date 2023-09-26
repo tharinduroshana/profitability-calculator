@@ -1,0 +1,8 @@
+using ProfitabilityCalculator.Contracts;
+
+namespace ProfitabilityCalculator.Services.ProfitabilityCalculation;
+
+public interface IProfitabilityCalculationService
+{
+    ProfitabilityCalculationResponse CalculateProfitability(Models.ProfitabilityCalculation profitabilityCalculation);
+}
