@@ -10,10 +10,8 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.16" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\ProfitabilityCalculator.Contracts\ProfitabilityCalculator.Contracts.csproj" />
   </ItemGroup>
-
-
 </Project>
