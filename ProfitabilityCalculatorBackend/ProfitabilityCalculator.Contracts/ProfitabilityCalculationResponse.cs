@@ -4,7 +4,8 @@ public record ProfitabilityCalculationResponse(
     Guid Id,
     double PricePerKilometre,
     double PricePerHour,
-    double noOfKilometres,
-    double noOfHours,
-    double Income
+    double NoOfKilometres,
+    double NoOfHours,
+    double Income,
+    double Profitability
 );
