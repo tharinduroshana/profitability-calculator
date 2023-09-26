@@ -1,19 +1,29 @@
-<script setup>
+<script>
 import Button from "@/components/Button.vue";
 import InputBox from "@/components/InputBox.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
 import LoadingButton from "@/components/LoadingButton.vue";
+import {useCalculationResultStore} from "@/store/CalculationResultStore";
 
 /*
 * ProfitabilityCalculator Screen
 *
 * This view shows the form component to calculate Profitability
 * */
-</script>
 
-<script>
 export default {
   name: "CalculatorView",
+  computed: {
+    ButtonTypes() {
+      return ButtonTypes
+    },
+    InputSizes() {
+      return InputSizes
+    },
+    InputTypes() {
+      return InputTypes
+    }
+  },
   data() {
     return {
       isLoading: false,
@@ -24,6 +34,7 @@ export default {
       income: "",
     }
   },
+  components: {Button, InputBox, LoadingButton},
   methods: {
     onSubmit(e) {
       e.preventDefault();
@@ -35,14 +46,14 @@ export default {
         noOfHours: this.noOfHours,
         income: this.income
       }
-      //TODO: Send the request to server and update the profitability input value.
-      setTimeout(() => {
-        // This setTimeout replicates the behavior of the request
-        this.isLoading = false;
-        this.$router.push({ name: "results", replace: true });
-      }, 2000);
+
+      const store = useCalculationResultStore();
+      store.calculateProfitability(inputData);
+
+      this.isLoading = false;
+      this.$router.push({ name: "results", replace: true });
     }
-  }
+  },
 }
 </script>
 
