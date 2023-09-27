@@ -37,7 +37,8 @@ export default {
       default: false
     },
     placeholder: String,
-    modelValue: String
+    modelValue: String,
+    required: false
   },
   methods: {
     onInput(event) {
@@ -56,7 +57,7 @@ export default {
       <input :class="['form-control', disabled ? 'disabled-input' : '', invalidData ? 'error-input-box' : '']" :value="modelValue" :type="type"
              :disabled="disabled"
              @input="onInput($event)"
-             :placeholder="placeholder">
+             :placeholder="placeholder" :required="required">
       <InputError v-show="invalidData" message="Invalid Input: Please enter a valid number" />
     </div>
   </div>

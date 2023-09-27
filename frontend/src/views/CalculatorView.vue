@@ -65,21 +65,21 @@ export default {
         <div class="row">
           <InputBox v-model="pricePerKilometre" :size="InputSizes.HALF" label="Price per Kilometre"
                     placeholder="Price charged for a kilometre"
-                    :type="InputTypes.NUMBER"/>
+                    :type="InputTypes.NUMBER" :required="true"/>
           <InputBox v-model="pricePerHour" :size="InputSizes.HALF" label="Price per Hour"
                     placeholder="Price charged for an hour"
-                    :type="InputTypes.NUMBER"/>
+                    :type="InputTypes.NUMBER" :required="true"/>
         </div>
         <div class="row">
           <InputBox v-model="noOfKilometres" :size="InputSizes.HALF" label="Kilometres"
                     placeholder="Number of kilometres"
-                    :type="InputTypes.NUMBER"/>
+                    :type="InputTypes.NUMBER" :required="true"/>
           <InputBox v-model="noOfHours" :size="InputSizes.HALF" label="Hours" placeholder="Number of hours"
-                    :type="InputTypes.NUMBER"/>
+                    :type="InputTypes.NUMBER" :required="true"/>
         </div>
         <div class="row">
           <InputBox v-model="income" :size="InputSizes.FULL" label="Income" placeholder="Total income"
-                    :type="InputTypes.NUMBER"/>
+                    :type="InputTypes.NUMBER" :required="true"/>
         </div>
         <div class="row" v-if="isLoading">
           <div class="col-md-12">
