@@ -37,32 +37,38 @@ export default {
 </script>
 
 <template>
-  <div class="row">
-    <div class="general-form">
-      <h5 class="title">Profitability Calculator</h5>
-      <form @submit="onSubmit">
-        <div class="row">
-          <InputBox :model-value="store.profitabilityCalculation.totalDistanceBasedCost.toString()" :size="InputSizes.FULL" label="Total Distance Based Cost" :disabled="true"
-                    :type="InputTypes.NUMBER"/>
-        </div>
-        <div class="row">
-          <InputBox :model-value="store.profitabilityCalculation.totalTimeBasedCost.toString()" :size="InputSizes.FULL" label="Total Time Based Cost" :disabled="true"
-                    :type="InputTypes.NUMBER"/>
-        </div>
-        <div class="row">
-          <InputBox :model-value="store.profitabilityCalculation.income.toString()" :size="InputSizes.FULL" label="Income" :disabled="true"
-                    :type="InputTypes.NUMBER"/>
-        </div>
-        <div class="row">
-          <InputBox :model-value="store.profitabilityCalculation.profitability.toString()" :size="InputSizes.FULL" label="Profitability" :disabled="true"
-                    :type="InputTypes.NUMBER"/>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <Button :type="ButtonTypes.SUBMIT" text="Back to Calculator"/>
+  <div class="container">
+    <div class="row">
+      <div class="general-form">
+        <h5 class="title">Profitability Calculator</h5>
+        <form @submit="onSubmit">
+          <div class="row">
+            <InputBox :model-value="store.profitabilityCalculation.totalDistanceBasedCost.toString()"
+                      :size="InputSizes.FULL" label="Total Distance Based Cost" :disabled="true"
+                      :type="InputTypes.NUMBER"/>
           </div>
-        </div>
-      </form>
+          <div class="row">
+            <InputBox :model-value="store.profitabilityCalculation.totalTimeBasedCost.toString()"
+                      :size="InputSizes.FULL" label="Total Time Based Cost" :disabled="true"
+                      :type="InputTypes.NUMBER"/>
+          </div>
+          <div class="row">
+            <InputBox :model-value="store.profitabilityCalculation.income.toString()" :size="InputSizes.FULL"
+                      label="Income" :disabled="true"
+                      :type="InputTypes.NUMBER"/>
+          </div>
+          <div class="row">
+            <InputBox :model-value="store.profitabilityCalculation.profitability.toString()" :size="InputSizes.FULL"
+                      label="Profitability" :disabled="true"
+                      :type="InputTypes.NUMBER"/>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <Button :type="ButtonTypes.SUBMIT" text="Back to Calculator"/>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>

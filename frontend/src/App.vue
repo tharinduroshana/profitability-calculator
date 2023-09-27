@@ -34,19 +34,17 @@ export default {
 <template>
   <div id="body-area" class="section">
     <div :class="this.isMobile ? 'section-center-mobile' : 'section-center'">
-      <div class="container">
-        <router-view v-slot="{ Component }">
-          <transition name="route" mode="out-in">
-            <component :is="Component"></component>
-          </transition>
-        </router-view>
-      </div>
+      <router-view v-slot="{ Component }">
+        <transition name="route" mode="out-in">
+          <component :is="Component"></component>
+        </transition>
+      </router-view>
     </div>
   </div>
 </template>
 
 <style scoped>
-.route-enter-active{
+.route-enter-active {
   transition: all 0.3s ease-out;
 }
 
