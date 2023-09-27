@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import CalculationResultsView from "@/views/CalculationResultsView.vue";
 import CalculatorView from "@/views/CalculatorView.vue";
 import LoginPage from "@/views/LoginPage.vue";
+import SignUpPage from "@/views/SignUpPage.vue";
 
 /*
 * The declaration of routes
@@ -21,6 +22,11 @@ const routes = [
         path: "/login",
         name: "login",
         component: LoginPage,
+    },
+    {
+        path: "/signup",
+        name: "signup",
+        component: SignUpPage,
     },
 ];
 

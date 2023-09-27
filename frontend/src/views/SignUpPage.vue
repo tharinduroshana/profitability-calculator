@@ -1,11 +1,11 @@
-<script xmlns="http://www.w3.org/1999/html">
+<script>
 import InputBox from "@/components/InputBox.vue";
 import Button from "@/components/Button.vue";
 import LoadingButton from "@/components/LoadingButton.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
 
 export default {
-  name: "LoginPage",
+  name: "SignUpPage",
   computed: {
     ButtonTypes() {
       return ButtonTypes
@@ -28,10 +28,10 @@ export default {
 </script>
 
 <template>
-  <div class="container login-page">
+  <div class="container signup-page">
     <div class="row">
       <div class="general-form">
-        <h5 class="title">Login</h5>
+        <h5 class="title">Sign Up</h5>
         <form @submit="onSubmit">
           <div class="row">
             <InputBox :size="InputSizes.FULL" label="Username" placeholder="Username"
@@ -42,18 +42,18 @@ export default {
                       :type="InputTypes.PASSWORD" :required="true"/>
           </div>
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="Remember me"
-                      :type="InputTypes.CHECKBOX"/>
+            <InputBox :size="InputSizes.FULL" label="Re-Password" placeholder="Password"
+                      :type="InputTypes.PASSWORD" :required="true"/>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <Button :type="ButtonTypes.SUBMIT" text="Log In"/>
+              <Button :type="ButtonTypes.SUBMIT" text="Sign Up"/>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <router-link class="sign-up-link" :to="{ name: 'signup'}">
-                <div class="sign-up-label">Don't have an account? Sign Up</div>
+              <router-link class="sign-in-link" :to="{ name: 'login'}">
+                <div class="sign-in-label">Already have an account? Login</div>
               </router-link>
             </div>
           </div>
@@ -63,16 +63,20 @@ export default {
   </div>
 </template>
 
-<style>
-.login-page {
+<style scoped>
+.signup-page {
   max-width: 500px;
 }
 
-.login-page .form-btn {
-  margin-top: 0;
+.signup-page .general-form .form-btn {
+  margin-top: 10px;
 }
 
-.sign-up-label {
+.sign-in-link {
+  text-decoration: none;
+}
+
+.sign-in-label {
   margin-top: 15px;
   margin-left: 20px;
   margin-bottom: 5px;
@@ -81,11 +85,7 @@ export default {
   color: white;
 }
 
-.sign-up-label:hover {
+.sign-in-label:hover {
   color: #ffb3b3;
-}
-
-.sign-up-link {
-  text-decoration: none;
 }
 </style>
