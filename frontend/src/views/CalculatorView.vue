@@ -36,7 +36,7 @@ export default {
   },
   components: {Button, InputBox, LoadingButton},
   methods: {
-    onSubmit(e) {
+    async onSubmit(e) {
       e.preventDefault();
       this.isLoading = true;
       const inputData = {
@@ -48,7 +48,7 @@ export default {
       }
 
       const store = useCalculationResultStore();
-      store.calculateProfitability(inputData);
+      await store.calculateProfitability(inputData);
 
       this.isLoading = false;
       this.$router.push({ name: "results", replace: true });

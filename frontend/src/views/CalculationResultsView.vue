@@ -2,6 +2,7 @@
 import InputBox from "@/components/InputBox.vue";
 import Button from "@/components/Button.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
+import {useCalculationResultStore} from "@/store/CalculationResultStore";
 
 /*
 * CalculationResultsView Screen
@@ -27,6 +28,10 @@ export default {
       e.preventDefault();
       this.$router.push({name: "calculator", replace: true});
     }
+  },
+  setup() {
+    const store = useCalculationResultStore();
+    return {store}
   }
 }
 </script>
@@ -37,19 +42,19 @@ export default {
       <h5 class="title">Profitability Calculator</h5>
       <form @submit="onSubmit">
         <div class="row">
-          <InputBox :size="InputSizes.FULL" label="Total Distance Based Cost" :disabled="true"
+          <InputBox :model-value="store.profitabilityCalculation.totalDistanceBasedCost.toString()" :size="InputSizes.FULL" label="Total Distance Based Cost" :disabled="true"
                     :type="InputTypes.NUMBER"/>
         </div>
         <div class="row">
-          <InputBox :size="InputSizes.FULL" label="Total Time Based Cost" :disabled="true"
+          <InputBox :model-value="store.profitabilityCalculation.totalTimeBasedCost.toString()" :size="InputSizes.FULL" label="Total Time Based Cost" :disabled="true"
                     :type="InputTypes.NUMBER"/>
         </div>
         <div class="row">
-          <InputBox :size="InputSizes.FULL" label="Income" :disabled="true"
+          <InputBox :model-value="store.profitabilityCalculation.income.toString()" :size="InputSizes.FULL" label="Income" :disabled="true"
                     :type="InputTypes.NUMBER"/>
         </div>
         <div class="row">
-          <InputBox :size="InputSizes.FULL" label="Profitability" :disabled="true"
+          <InputBox :model-value="store.profitabilityCalculation.profitability.toString()" :size="InputSizes.FULL" label="Profitability" :disabled="true"
                     :type="InputTypes.NUMBER"/>
         </div>
         <div class="row">
