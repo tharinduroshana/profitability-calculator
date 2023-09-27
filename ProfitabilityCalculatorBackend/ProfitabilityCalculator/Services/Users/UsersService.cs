@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ProfitabilityCalculator.Contracts;
 using ProfitabilityCalculator.Database;
@@ -30,17 +31,24 @@ public class UsersService : IUsersService
      */
     public async Task<User> CreateUser(UserSignUpRequest request)
     {
-        CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-        var user = new User
+        if (await _dbContext.Users.AnyAsync(u => u.Username == request.Username))
         {
-            Username = request.Username,
-            Name = request.Name,
-            PasswordHash = passwordHash,
-            PasswordSalt = passwordSalt
-        };
-        var createdUser = await _dbContext.Users.AddAsync(user);
-        await _dbContext.SaveChangesAsync();
-        return createdUser.Entity;
+            return null;
+        }
+        else
+        {
+            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            var user = new User
+            {
+                Username = request.Username,
+                Name = request.Name,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt
+            };
+            var createdUser = await _dbContext.Users.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+            return createdUser.Entity;
+        }
     }
 
     /*
