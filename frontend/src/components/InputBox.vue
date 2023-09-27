@@ -1,6 +1,5 @@
 <script>
-import {InputSizes} from "@/utils/enums";
-import {InputTypes} from "@/utils/enums";
+import {InputSizes, InputTypes} from "@/utils/enums";
 import InputError from "@/components/InputError.vue";
 
 /*
@@ -15,11 +14,15 @@ import InputError from "@/components/InputError.vue";
 
 export default {
   name: "InputBox",
+  computed: {
+    InputTypes() {
+      return InputTypes
+    }
+  },
   components: {InputError},
   data() {
     return {
-      invalidData: false,
-      needValidation: false
+      invalidData: false
     }
   },
   props: {
@@ -38,31 +41,54 @@ export default {
     },
     placeholder: String,
     modelValue: String,
-    required: false
+    required: false,
+    needValidation: false
   },
   methods: {
     onInput(event) {
       const value = event.target.value;
-      this.invalidData = event.target.validity.badInput || event.target.value === "";
+      this.invalidData = this.needValidation && (event.target.validity.badInput || event.target.value === "");
       this.$emit('update:modelValue', value)
     }
-  }
+  },
 }
 </script>
 
 <template>
   <div :class="size">
-    <div class="form-group">
+    <div class="form-group checkbox-group" v-if="type === InputTypes.CHECKBOX">
+      <input
+          :type="type"
+          :disabled="disabled"
+          name="checkbox"
+          @input="onInput($event)"
+          :placeholder="placeholder" :required="required">
+      <label class="form-checkbox">{{ label }}</label>
+    </div>
+    <div class="form-group" v-else>
       <span class="form-label">{{ label }}</span>
-      <input :class="['form-control', disabled ? 'disabled-input' : '', invalidData ? 'error-input-box' : '']" :value="modelValue" :type="type"
-             :disabled="disabled"
-             @input="onInput($event)"
-             :placeholder="placeholder" :required="required">
-      <InputError v-show="invalidData" message="Invalid Input: Please enter a valid number" />
+      <input
+          :class="['form-control', disabled ? 'disabled-input' : '', needValidation && invalidData ? 'error-input-box' : '']"
+          :value="modelValue" :type="type"
+          :disabled="disabled"
+          @input="onInput($event)"
+          :placeholder="placeholder" :required="required">
+      <InputError v-show="needValidation && invalidData" message="Invalid Input: Please enter a valid number"/>
     </div>
   </div>
 </template>
 
 <style scoped>
+.general-form .form-checkbox {
+  color: white;
+  padding: 0 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
 
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+}
 </style>

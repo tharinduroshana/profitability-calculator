@@ -18,7 +18,9 @@ export const InputSizes = {
 export const InputTypes = {
     TEXT: "text",
     NUMBER: "number",
-    DATE: "date"
+    DATE: "date",
+    PASSWORD: "password",
+    CHECKBOX: "checkbox"
 }
 
 /*
