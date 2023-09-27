@@ -1,6 +1,7 @@
 <script>
 import {InputSizes} from "@/utils/enums";
 import {InputTypes} from "@/utils/enums";
+import InputError from "@/components/InputError.vue";
 
 /*
 * InputBox Component
@@ -14,6 +15,13 @@ import {InputTypes} from "@/utils/enums";
 
 export default {
   name: "InputBox",
+  components: {InputError},
+  data() {
+    return {
+      invalidData: false,
+      needValidation: false
+    }
+  },
   props: {
     label: String,
     size: {
@@ -31,6 +39,13 @@ export default {
     placeholder: String,
     modelValue: String
   },
+  methods: {
+    onInput(event) {
+      const value = event.target.value;
+      this.invalidData = event.target.validity.badInput || event.target.value === "";
+      this.$emit('update:modelValue', value)
+    }
+  }
 }
 </script>
 
@@ -38,10 +53,11 @@ export default {
   <div :class="size">
     <div class="form-group">
       <span class="form-label">{{ label }}</span>
-      <input :class="['form-control', disabled ? 'disabled-input' : '']" :value="modelValue" :type="type"
+      <input :class="['form-control', disabled ? 'disabled-input' : '', invalidData ? 'error-input-box' : '']" :value="modelValue" :type="type"
              :disabled="disabled"
-             @input="$emit('update:modelValue', $event.target.value)"
+             @input="onInput($event)"
              :placeholder="placeholder">
+      <InputError v-show="invalidData" message="Invalid Input: Please enter a valid number" />
     </div>
   </div>
 </template>
