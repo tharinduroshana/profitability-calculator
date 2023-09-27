@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using ProfitabilityCalculator.Contracts;
 using ProfitabilityCalculator.Models;
+using ProfitabilityCalculator.Services.Users;
 
 namespace ProfitabilityCalculator.Controllers;
 
@@ -12,42 +13,53 @@ namespace ProfitabilityCalculator.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    private static readonly User _user = new User();
     private readonly IConfiguration _configuration;
+    private readonly IUsersService _userService;
 
-    public UserController(IConfiguration configuration)
+    public UserController(IConfiguration configuration, IUsersService userService)
     {
         _configuration = configuration;
+        _userService = userService;
     }
 
     [HttpPost("signup")]
-    public async Task<ActionResult<User>> SignUp(UserDto request)
+    public async Task<ActionResult<User>> SignUp(UserSignUpRequest request)
     {
         CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-        _user.Username = request.Username;
-        _user.PasswordHash = passwordHash;
-        _user.PasswordSalt = passwordSalt;
+        var user = new User
+        {
+            Username = request.Username,
+            Name = request.Name,
+            PasswordHash = passwordHash,
+            PasswordSalt = passwordSalt
+        };
 
-        return Ok(_user);
+        var createdUser = await _userService.CreateUser(user);
+
+        var response = new UserResponse(createdUser.Name, createdUser.Username);
+
+        return Ok(response);
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<string>> Login(UserDto request)
+    public async Task<ActionResult<string>> Login(UserLoginRequest request)
     {
-        if (_user.Username != request.Username)
+        var user = await _userService.SignIn(request.Username);
+
+        if (user == null)
         {
             return BadRequest("User not found!");
         }
 
-        var doesPasswordsMatch = VerifyPasswordHash(request.Password, _user.PasswordHash, _user.PasswordSalt);
+        var doesPasswordsMatch = VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt);
 
         if (!doesPasswordsMatch)
         {
             return BadRequest("Wrong credentials!");
         }
 
-        var token = CreateToken(_user);
+        var token = CreateToken(user);
         return Ok(token);
     }
 
@@ -55,7 +67,8 @@ public class UserController : ControllerBase
     {
         List<Claim> claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, user.Username)
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Name, user.Name)
         };
         var key = new SymmetricSecurityKey(
             System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
@@ -66,13 +79,13 @@ public class UserController : ControllerBase
             claims: claims,
             expires: DateTime.Now.AddDays(1),
             signingCredentials: cred
-            );
+        );
 
         var jwt = new JwtSecurityTokenHandler().WriteToken(token);
         return jwt;
     }
 
-    private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+    private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
     {
         using (var hmac = new HMACSHA512())
         {
@@ -81,7 +94,7 @@ public class UserController : ControllerBase
         }
     }
 
-    private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+    private static bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
     {
         using (var hmac = new HMACSHA512(passwordSalt))
         {

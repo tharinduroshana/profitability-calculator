@@ -1,7 +1,6 @@
 namespace ProfitabilityCalculator.Contracts;
 
-public record UserDto(
+public record UserResponse(
     string Username,
-    string Password,
     string Name
 );
