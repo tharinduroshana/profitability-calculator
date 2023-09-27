@@ -19,4 +19,10 @@ export const useCalculationResultStore = defineStore("calculationResultStore", {
             this.profitabilityCalculation = await response.json();
         }
     },
+    persist: {
+        enabled: true,
+        strategies: [
+            { storage: sessionStorage, paths: ['profitabilityCalculation'] }
+        ],
+    },
 });
