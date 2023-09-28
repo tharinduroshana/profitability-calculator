@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProfitabilityCalculator.Contracts;
 using ProfitabilityCalculator.Models;
@@ -17,6 +18,7 @@ public class ProfitabilityCalculationController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public IActionResult CalculateProfitability(ProfitabilityCalculationRequest request)
     {
         var profitabilityCalculation = ProfitabilityCalculation.InitializeCalculation(request.PricePerKilometre,
