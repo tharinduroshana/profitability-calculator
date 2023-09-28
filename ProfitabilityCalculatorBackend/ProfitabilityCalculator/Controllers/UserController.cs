@@ -29,7 +29,7 @@ public class UserController : ControllerBase
         {
             return BadRequest("User Creation Failed!");
         }
-        var response = new UserResponse(createdUser.Name, createdUser.Username);
+        var response = new UserResponse(createdUser.Username, createdUser.Name);
         return Ok(response);
     }
 
