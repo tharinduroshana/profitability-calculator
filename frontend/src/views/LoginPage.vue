@@ -3,6 +3,8 @@ import InputBox from "@/components/InputBox.vue";
 import Button from "@/components/Button.vue";
 import LoadingButton from "@/components/LoadingButton.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
+import {useUserAuthStore} from "@/store/UserAuthStore";
+import {usePopUpAlertStore} from "@/store/PopUpAlertStore";
 
 export default {
   name: "LoginPage",
@@ -17,11 +19,40 @@ export default {
       return InputSizes
     }
   },
+  data() {
+    return {
+      username: "",
+      password: "",
+      rememberMe: false
+    }
+  },
   components: {LoadingButton, Button, InputBox},
   methods: {
-    onSubmit(e) {
+    async onSubmit(e) {
+      e.preventDefault();
+      if (this.validateUserInputs()) {
+        const status = await this.userStore.loginUser({
+          username: this.username,
+          password: this.password
+        });
+        if (status === 200) {
+          this.$router.push({name: "calculator", replace: true});
+        } else {
+          this.alertStore.showPopUpAlert("Authentication failure!");
+        }
+      } else {
+        this.alertStore.showPopUpAlert("Fields cannot be kept empty!");
+      }
+    },
+    validateUserInputs() {
+      return !(!this.username && !this.password);
 
     }
+  },
+  setup() {
+    const userStore = useUserAuthStore();
+    const alertStore = usePopUpAlertStore();
+    return { userStore, alertStore }
   }
 }
 
@@ -34,11 +65,11 @@ export default {
         <h5 class="title">Login</h5>
         <form @submit="onSubmit">
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="Username" placeholder="Username"
+            <InputBox v-model="username" :size="InputSizes.FULL" label="Username" placeholder="Username"
                       :type="InputTypes.TEXT" :required="true"/>
           </div>
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="Password" placeholder="Password"
+            <InputBox v-model="password" :size="InputSizes.FULL" label="Password" placeholder="Password"
                       :type="InputTypes.PASSWORD" :required="true"/>
           </div>
           <div class="row">

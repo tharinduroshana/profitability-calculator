@@ -17,6 +17,10 @@ export const useCalculationResultStore = defineStore("calculationResultStore", {
                 body: JSON.stringify(payload)
             });
             this.profitabilityCalculation = await response.json();
+        },
+        resetResults() {
+            this.profitabilityCalculation = null;
+            sessionStorage.removeItem("profitabilityCalculation");
         }
     },
     persist: {

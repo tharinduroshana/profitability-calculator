@@ -54,6 +54,10 @@ export default {
       this.$router.push({name: "results", replace: true});
     }
   },
+  setup() {
+    const store = useCalculationResultStore();
+    store.resetResults();
+  }
 }
 </script>
 

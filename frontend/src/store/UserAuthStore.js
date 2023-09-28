@@ -1,4 +1,5 @@
 import {defineStore} from "pinia";
+import Cookies from 'js-cookie';
 
 /*
 * The store for user authentications
@@ -16,6 +17,25 @@ export const useUserAuthStore = defineStore("userAuthStore", {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(userData)
             });
+        },
+        async loginUser(userData) {
+            let status = 400;
+            try {
+                const response = await fetch("/api/user/login", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(userData)
+                });
+                status = response.status;
+                this._storeUser(await response.json());
+            } catch (e) {
+                console.log(e);
+            }
+            return status;
+        },
+        _storeUser(user) {
+            this.user = user;
+            Cookies.set('auth_cookie', user.token, {expires: 5});
         }
     },
 });

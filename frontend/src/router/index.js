@@ -3,6 +3,8 @@ import CalculationResultsView from "@/views/CalculationResultsView.vue";
 import CalculatorView from "@/views/CalculatorView.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import SignUpPage from "@/views/SignUpPage.vue";
+import Cookies from 'js-cookie';
+import {useCalculationResultStore} from "@/store/CalculationResultStore";
 
 /*
 * The declaration of routes
@@ -33,6 +35,31 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    const isAuthenticated = !!Cookies.get('auth_cookie');
+
+    if (to.name === 'login' || to.name === 'signup') {
+        if (isAuthenticated) {
+            next({ name: 'calculator' });
+        } else {
+            next();
+        }
+    } else if (isAuthenticated) {
+        if (to.name === 'results') {
+            const store = useCalculationResultStore();
+            if (store.profitabilityCalculation == null) {
+                next({ name: "calculator" });
+            } else {
+                next();
+            }
+        } else {
+            next();
+        }
+    } else {
+        next({ name: 'login' });
+    }
 });
 
 export default router;
