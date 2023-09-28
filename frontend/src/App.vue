@@ -1,10 +1,12 @@
 <script>
 import CalculatorView from "./views/CalculatorView.vue";
 import CalculationResultsView from "@/views/CalculationResultsView.vue";
+import PopUpAlert from "@/components/PopUpAlert.vue";
+import {usePopUpAlertStore} from "@/store/PopUpAlertStore";
 
 export default {
   name: "App",
-  components: {CalculationResultsView, CalculatorView},
+  components: {PopUpAlert, CalculationResultsView, CalculatorView},
   data() {
     return {
       isMobile: false
@@ -28,11 +30,16 @@ export default {
   beforeDestroy() {
     window.removeEventListener('resize', this.setMobileView)
   },
+  setup() {
+    const alertStore = usePopUpAlertStore();
+    return {alertStore}
+  }
 }
 </script>
 
 <template>
   <div id="body-area" class="section">
+    <PopUpAlert v-if="alertStore.showAlert" />
     <div :class="this.isMobile ? 'section-center-mobile' : 'section-center'">
       <router-view v-slot="{ Component }">
         <transition name="route" mode="out-in">
