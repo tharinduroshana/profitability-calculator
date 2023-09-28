@@ -4,6 +4,7 @@ import Button from "@/components/Button.vue";
 import LoadingButton from "@/components/LoadingButton.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
 import {usePopUpAlertStore} from "@/store/PopUpAlertStore";
+import {useUserAuthStore} from "@/store/UserAuthStore";
 
 export default {
   name: "SignUpPage",
@@ -28,11 +29,21 @@ export default {
   },
   components: {LoadingButton, Button, InputBox},
   methods: {
-    onSubmit(e) {
+    async onSubmit(e) {
       e.preventDefault();
       const valid = this.validateInputs();
       if (valid) {
-        // TODO: Make request
+        const response = await this.userStore.signUpUser({
+          name: this.name,
+          username: this.username,
+          password: this.password
+        });
+        const status = response.status;
+        if (status === 200) {
+          this.alertStore.showPopUpAlertWithFunction("User registration successful!", "Login", () => this.routeToLogin())
+        } else {
+          this.alertStore.showPopUpAlert("Unknown error occurred");
+        }
       }
     },
     validateInputs() {
@@ -59,11 +70,16 @@ export default {
     },
     matchUsername(username) {
       return new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,}$").test(username);
+    },
+    routeToLogin() {
+      this.alertStore.hidePopUpAlert();
+      this.$router.push({name: "login", replace: true});
     }
   },
   setup() {
     const alertStore = usePopUpAlertStore();
-    return { alertStore }
+    const userStore = useUserAuthStore();
+    return {alertStore, userStore}
   }
 }
 

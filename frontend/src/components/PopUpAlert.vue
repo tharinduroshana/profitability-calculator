@@ -13,16 +13,15 @@ export default {
   components: {Button},
   data() {
     return {
-      message: ""
-    }
-  },
-  methods: {
-    onClose() {
-      this.alertStore.hidePopUpAlert();
+      message: "",
+      onClose: Function,
+      buttonText: ""
     }
   },
   created() {
     this.message = this.alertStore.message
+    this.onClose = this.alertStore.onClose ? this.alertStore.onClose : () => this.alertStore.hidePopUpAlert();
+    this.buttonText = this.alertStore.buttonText;
   },
   setup() {
     const alertStore = usePopUpAlertStore();
@@ -40,7 +39,7 @@ export default {
             <p>{{ message }}</p>
             <div class="row">
               <div class="col-md-12">
-                <Button @btn-click="onClose()" :type="ButtonTypes.SUBMIT" text="Close"/>
+                <Button @btn-click="onClose()" :type="ButtonTypes.SUBMIT" :text="buttonText"/>
               </div>
             </div>
           </div>
