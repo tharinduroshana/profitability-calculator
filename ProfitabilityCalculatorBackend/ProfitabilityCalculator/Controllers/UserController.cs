@@ -29,8 +29,7 @@ public class UserController : ControllerBase
         {
             return BadRequest("User Creation Failed!");
         }
-        var response = new UserResponse(createdUser.Username, createdUser.Name);
-        return Ok(response);
+        return Ok();
     }
 
     [HttpPost("login")]
@@ -41,6 +40,8 @@ public class UserController : ControllerBase
         {
             return BadRequest("Authentication Failed!");
         }
-        return Ok(token);
+
+        var response = new UserLoginResponse(request.Username, token);
+        return Ok(response);
     }
 }
