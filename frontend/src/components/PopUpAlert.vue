@@ -64,6 +64,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
 }
 
 .general-form .form-btn {

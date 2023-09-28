@@ -3,6 +3,7 @@ import InputBox from "@/components/InputBox.vue";
 import Button from "@/components/Button.vue";
 import LoadingButton from "@/components/LoadingButton.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
+import {usePopUpAlertStore} from "@/store/PopUpAlertStore";
 
 export default {
   name: "SignUpPage",
@@ -17,11 +18,52 @@ export default {
       return InputSizes
     }
   },
+  data() {
+    return {
+      name: "",
+      username: "",
+      password: "",
+      re_password: ""
+    }
+  },
   components: {LoadingButton, Button, InputBox},
   methods: {
     onSubmit(e) {
-
+      e.preventDefault();
+      const valid = this.validateInputs();
+      if (valid) {
+        // TODO: Make request
+      }
+    },
+    validateInputs() {
+      if (!this.name && !this.username && !this.password && !this.re_password) {
+        this.alertStore.showPopUpAlert("Fields cannot be kept empty!");
+        return false;
+      }
+      if (!this.matchUsername(this.username)) {
+        this.alertStore.showPopUpAlert("Username must include at least 4 characters. Only letters and numbers are allowed.");
+        return false;
+      }
+      if (!this.matchPassword(this.password)) {
+        this.alertStore.showPopUpAlert("Password must include at least 8 characters, at least one Capital letter and at least one number");
+        return false;
+      }
+      if (this.password !== this.re_password) {
+        this.alertStore.showPopUpAlert("Two passwords don't match!");
+        return false;
+      }
+      return true;
+    },
+    matchPassword(password) {
+      return new RegExp("(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}").test(password)
+    },
+    matchUsername(username) {
+      return new RegExp("^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,}$").test(username);
     }
+  },
+  setup() {
+    const alertStore = usePopUpAlertStore();
+    return { alertStore }
   }
 }
 
@@ -34,19 +76,19 @@ export default {
         <h5 class="title">Sign Up</h5>
         <form @submit="onSubmit">
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="Full Name" placeholder="Full name"
+            <InputBox v-model="name" :size="InputSizes.FULL" label="Full Name" placeholder="Full name"
                       :type="InputTypes.TEXT" :required="true"/>
           </div>
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="Username" placeholder="Username"
+            <InputBox v-model="username" :size="InputSizes.FULL" label="Username" placeholder="Username"
                       :type="InputTypes.TEXT" :required="true"/>
           </div>
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="Password" placeholder="Password"
+            <InputBox v-model="password" :size="InputSizes.FULL" label="Password" placeholder="Password"
                       :type="InputTypes.PASSWORD" :required="true"/>
           </div>
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="Re-Password" placeholder="Password"
+            <InputBox v-model="re_password" :size="InputSizes.FULL" label="Re-Password" placeholder="Password"
                       :type="InputTypes.PASSWORD" :required="true"/>
           </div>
           <div class="row">
