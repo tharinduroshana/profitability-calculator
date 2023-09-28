@@ -34,6 +34,10 @@ export default {
         <h5 class="title">Sign Up</h5>
         <form @submit="onSubmit">
           <div class="row">
+            <InputBox :size="InputSizes.FULL" label="Full Name" placeholder="Full name"
+                      :type="InputTypes.TEXT" :required="true"/>
+          </div>
+          <div class="row">
             <InputBox :size="InputSizes.FULL" label="Username" placeholder="Username"
                       :type="InputTypes.TEXT" :required="true"/>
           </div>
