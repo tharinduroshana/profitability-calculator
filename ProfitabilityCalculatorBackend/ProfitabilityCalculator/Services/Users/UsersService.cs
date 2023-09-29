@@ -74,6 +74,20 @@ public class UsersService : IUsersService
     }
     
     /*
+     * DeleteUser method deletes an existing user
+     *
+     * @username: Username of the user which must be deleted
+     */
+    public async Task<bool> DeleteUser(UserDeleteRequest request)
+    {
+        var fetchedUser = await _dbContext.Users.FindAsync(request.Username);
+        if (fetchedUser == null) return false;
+        _dbContext.Remove(fetchedUser);
+        await _dbContext.SaveChangesAsync();
+        return true;
+    }
+    
+    /*
      * CreatePasswordHash method creates the hashed password when registering a user
      *
      * @password: The original registering password

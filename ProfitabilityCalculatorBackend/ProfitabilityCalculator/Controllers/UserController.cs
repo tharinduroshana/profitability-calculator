@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProfitabilityCalculator.Contracts;
 using ProfitabilityCalculator.Models;
@@ -43,5 +44,17 @@ public class UserController : ControllerBase
 
         var response = new UserLoginResponse(request.Username, token);
         return Ok(response);
+    }
+    
+    [HttpDelete("delete")]
+    [Authorize]
+    public async Task<ActionResult<string>> DeleteUser(UserDeleteRequest request)
+    {
+        var isDeleted = await _userService.DeleteUser(request);
+        if (isDeleted)
+        {
+            return Ok();
+        }
+        return BadRequest("User deletion failed!");
     }
 }

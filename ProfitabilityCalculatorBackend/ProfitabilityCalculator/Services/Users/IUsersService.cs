@@ -9,4 +9,5 @@ public interface IUsersService
 {
     Task<User> CreateUser(UserSignUpRequest request);
     Task<string> SignIn(UserLoginRequest request);
+    Task<bool> DeleteUser(UserDeleteRequest request);
 }
