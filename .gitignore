@@ -10,3 +10,8 @@ ProfitabilityCalculatorBackend/ProfitabilityCalculator.Contracts/bin
 ProfitabilityCalculatorBackend/ProfitabilityCalculator.Contracts/obj
 ProfitabilityCalculatorBackend/ProfitabilityCalculator.Tests/bin
 ProfitabilityCalculatorBackend/ProfitabilityCalculator.Tests/obj
+
+profitability-e2e-testing/node_modules
+profitability-e2e-testing/package-lock.json
+profitability-e2e-testing/.idea
+profitability-e2e-testing/.vscode

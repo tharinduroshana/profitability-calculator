@@ -1,0 +1,14 @@
+{
+  "name": "profitability-e2e-testing",
+  "version": "1.0.0",
+  "description": "End to end testing for Profitability Calculator project Rest APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tharindu Ranaweera",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.3.0"
+  }
+}
