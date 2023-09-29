@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProfitabilityCalculator.Contracts;
@@ -24,13 +25,22 @@ public class UserController : ControllerBase
     [HttpPost("signup")]
     public async Task<ActionResult<User>> SignUp(UserSignUpRequest request)
     {
+        var isUsernameValid = IsValidUsername(request.Username);
+        var isPasswordValid = IsValidPassword(request.Password);
 
-        var createdUser = await _userService.CreateUser(request);
-        if (createdUser == null)
+        if (isUsernameValid && isPasswordValid)
         {
-            return BadRequest("User Creation Failed!");
+            var createdUser = await _userService.CreateUser(request);
+            if (createdUser == null)
+            {
+                return BadRequest("User Creation Failed!");
+            }
+            return Ok();
         }
-        return Ok();
+        else
+        {
+            return BadRequest("Provided arguments doesn't meet the requirements!");
+        }
     }
 
     [HttpPost("login")]
@@ -56,5 +66,15 @@ public class UserController : ControllerBase
             return Ok();
         }
         return BadRequest("User deletion failed!");
+    }
+
+    private bool IsValidUsername(string username)
+    {
+        return Regex.Match(username, "^(?=.*[a-zA-Z])[a-zA-Z0-9]{4,}$").Success;
+    }
+    
+    private bool IsValidPassword(string password)
+    {
+        return Regex.Match(password, "^(?=.*[A-Z])(?=.*[0-9]).{8,}$").Success;
     }
 }
