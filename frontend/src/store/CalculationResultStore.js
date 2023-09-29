@@ -12,13 +12,20 @@ export const useCalculationResultStore = defineStore("calculationResultStore", {
     },
     actions: {
         async calculateProfitability(payload) {
-            const token = useUserAuthStore().user.token;
-            const response = await fetch("/api/profitabilityCalculation", {
-                method: "POST",
-                headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
-                body: JSON.stringify(payload)
-            });
-            this.profitabilityCalculation = await response.json();
+            let status = 401;
+            try {
+                const token = useUserAuthStore().user.token;
+                const response = await fetch("/api/profitabilityCalculation", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+                    body: JSON.stringify(payload)
+                });
+                status = response.status;
+                this.profitabilityCalculation = await response.json();
+            } catch (e) {
+                console.log(e);
+            }
+            return status;
         },
         resetResults() {
             this.profitabilityCalculation = null;

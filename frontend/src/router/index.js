@@ -5,6 +5,7 @@ import LoginPage from "@/views/LoginPage.vue";
 import SignUpPage from "@/views/SignUpPage.vue";
 import Cookies from 'js-cookie';
 import {useCalculationResultStore} from "@/store/CalculationResultStore";
+import {useUserAuthStore} from "@/store/UserAuthStore";
 
 /*
 * The declaration of routes
@@ -47,6 +48,9 @@ router.beforeEach((to, from, next) => {
             next();
         }
     } else if (isAuthenticated) {
+        const cookieData = Cookies.get('auth_cookie');
+        const authStore = useUserAuthStore();
+        authStore.authUserFromCookie(cookieData);
         if (to.name === 'results') {
             const store = useCalculationResultStore();
             if (store.profitabilityCalculation == null) {

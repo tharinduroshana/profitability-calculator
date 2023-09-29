@@ -33,6 +33,13 @@ export const useUserAuthStore = defineStore("userAuthStore", {
             }
             return status;
         },
+        authUserFromCookie(token) {
+            this.user = { token: token }
+        },
+        logoutUser() {
+            this.user = null;
+            Cookies.remove("auth_cookie");
+        },
         _storeUser(user) {
             this.user = user;
             Cookies.set('auth_cookie', user.token, {expires: 5});

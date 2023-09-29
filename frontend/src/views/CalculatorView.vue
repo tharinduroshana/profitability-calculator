@@ -4,6 +4,8 @@ import InputBox from "@/components/InputBox.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
 import LoadingButton from "@/components/LoadingButton.vue";
 import {useCalculationResultStore} from "@/store/CalculationResultStore";
+import {usePopUpAlertStore} from "@/store/PopUpAlertStore";
+import {useUserAuthStore} from "@/store/UserAuthStore";
 
 /*
 * ProfitabilityCalculator Screen
@@ -48,15 +50,27 @@ export default {
       }
 
       const store = useCalculationResultStore();
-      await store.calculateProfitability(inputData);
+      const status = await store.calculateProfitability(inputData);
 
-      this.isLoading = false;
-      this.$router.push({name: "results", replace: true});
+      if (status === 401) {
+        this.alertStore.showPopUpAlertWithFunction("Authorization failure!", "Authorize", () => this.routeToLogin())
+      } else {
+        this.isLoading = false;
+        this.$router.push({name: "results", replace: true});
+      }
+    },
+    routeToLogin() {
+      this.alertStore.hidePopUpAlert();
+      this.authStore.logoutUser();
+      this.$router.push({name: "login", replace: true});
     }
   },
   setup() {
-    const store = useCalculationResultStore();
-    store.resetResults();
+    const calcStore = useCalculationResultStore();
+    const alertStore = usePopUpAlertStore();
+    const authStore = useUserAuthStore();
+    calcStore.resetResults();
+    return { alertStore, authStore }
   }
 }
 </script>
