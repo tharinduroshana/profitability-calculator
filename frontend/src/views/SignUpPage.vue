@@ -39,7 +39,7 @@ export default {
           password: this.password
         });
         const status = response.status;
-        if (status === 200) {
+        if (status === 201) {
           this.alertStore.showPopUpAlertWithFunction("User registration successful!", "Login", () => this.routeToLogin())
         } else {
           this.alertStore.showPopUpAlert("Unknown error occurred");
