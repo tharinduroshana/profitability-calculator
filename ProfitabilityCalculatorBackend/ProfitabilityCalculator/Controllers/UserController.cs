@@ -22,7 +22,19 @@ public class UserController : ControllerBase
         _userService = userService;
     }
 
+    /// <summary>
+    /// Registers a new user into the system
+    /// </summary>
+    /// <remarks>
+    /// Use this endpoint to Register a new user which can be used to authenticate a profitability calculation
+    /// </remarks>
+    /// <param name="request">The request object contains name, username, password of the registering user</param>
+    /// <returns>UserSignUpResponse with username and name of the registered user</returns>
+    /// <response code="201">Returns when the user is successfully registered.</response>
+    /// <response code="400">Returns when the an error occured during registration.</response>
     [HttpPost("signup")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<User>> SignUp(UserSignUpRequest request)
     {
         var isUsernameValid = IsValidUsername(request.Username);
@@ -35,7 +47,7 @@ public class UserController : ControllerBase
             {
                 return BadRequest("User Creation Failed!");
             }
-            return Ok();
+            return Created("users/", new UserSignUpResponse(createdUser.Name, createdUser.Username));
         }
         else
         {
@@ -43,7 +55,19 @@ public class UserController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Logs a user into the calculator program
+    /// </summary>
+    /// <remarks>
+    /// Use this endpoint to login a user into the system to gain a JWT token to authenticate a profitability calculation
+    /// </remarks>
+    /// <param name="request">The request object contains username, password of the user</param>
+    /// <returns>UserLoginResponse with username and the JWT token</returns>
+    /// <response code="200">Returns when the user authenticated successfully.</response>
+    /// <response code="400">Returns when the an error occured during login.</response>
     [HttpPost("login")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<string>> Login(UserLoginRequest request)
     {
         var token = await _userService.SignIn(request);
@@ -56,8 +80,20 @@ public class UserController : ControllerBase
         return Ok(response);
     }
     
+    /// <summary>
+    /// Removes a user from the database
+    /// </summary>
+    /// <remarks>
+    /// Use this endpoint to remove a user from the system's database
+    /// </remarks>
+    /// <param name="request">The request object contains username of the user</param>
+    /// <returns>OK Response if succeeds</returns>
+    /// <response code="200">Returns when the user removed successfully.</response>
+    /// <response code="400">Returns when the an error occured during user removal.</response>
     [HttpDelete("delete")]
     [Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<string>> DeleteUser(UserDeleteRequest request)
     {
         var isDeleted = await _userService.DeleteUser(request);

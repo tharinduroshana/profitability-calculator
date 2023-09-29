@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -21,6 +22,17 @@ builder.Services.AddDbContext<ProbabilityCalcDBContext>(o =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setup =>
 {
+    setup.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Profitability Calculation API",
+        Description = "The Profitability Calculation REST API which supports calculation of profitability of transport quotations",
+        Contact = new OpenApiContact
+        {
+            Name = "Tharindu Ranaweera",
+            Url = new Uri("https://www.linkedin.com/in/tharindu-roshana-ranaweera/")
+        }
+    });
     var jwtSecurityScheme = new OpenApiSecurityScheme
     {
         BearerFormat = "JWT",
@@ -44,6 +56,8 @@ builder.Services.AddSwaggerGen(setup =>
         { jwtSecurityScheme, Array.Empty<string>() }
     });
 
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    setup.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 builder.Services.AddCors(policyBuilder =>
     policyBuilder.AddDefaultPolicy(policy =>

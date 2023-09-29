@@ -17,8 +17,17 @@ public class ProfitabilityCalculationController : ControllerBase
         _profitabilityCalculationService = profitabilityCalculationService;
     }
 
+    /// <summary>
+    /// Calculates the Profitability of provided Quotation
+    /// </summary>
+    /// <remarks>
+    /// Use this endpoint to calculate total distance based costs, total time based costs and profitability.
+    /// </remarks>
+    /// <param name="request">The request object contains totalCostPerKilometre, totalCostPerHour, noOfHours, noOfKilometres, Income</param>
+    /// <returns>The response contains the same information provided above with the id, total distance based costs, total time based costs and profitability</returns>
     [HttpPost]
     [Authorize]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public IActionResult CalculateProfitability(ProfitabilityCalculationRequest request)
     {
         var profitabilityCalculation = ProfitabilityCalculation.InitializeCalculation(request.PricePerKilometre,
