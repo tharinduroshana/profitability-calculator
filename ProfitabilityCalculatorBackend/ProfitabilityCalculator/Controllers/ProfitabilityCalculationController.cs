@@ -31,11 +31,18 @@ public class ProfitabilityCalculationController : ControllerBase
     [Produces("application/json")]
     public ActionResult<ProfitabilityCalculationResponse> CalculateProfitability(ProfitabilityCalculationRequest request)
     {
-        var profitabilityCalculation = ProfitabilityCalculation.InitializeCalculation(request.PricePerKilometre,
-            request.PricePerHour, request.NoOfKilometres, request.NoOfHours, request.Income);
+        try
+        {
+            var profitabilityCalculation = ProfitabilityCalculation.InitializeCalculation(request.PricePerKilometre,
+                request.PricePerHour, request.NoOfKilometres, request.NoOfHours, request.Income);
 
-        var response = _profitabilityCalculationService.CalculateProfitability(profitabilityCalculation);
+            var response = _profitabilityCalculationService.CalculateProfitability(profitabilityCalculation);
 
-        return Ok(response);
+            return Ok(response);
+        }
+        catch (Exception e)
+        {
+            return BadRequest("Calculation failed due to invalid arguments!");
+        }
     }
 }

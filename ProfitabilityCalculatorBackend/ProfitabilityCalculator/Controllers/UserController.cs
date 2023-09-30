@@ -38,21 +38,28 @@ public class UserController : ControllerBase
     [Produces("application/json")]
     public async Task<ActionResult<UserSignUpResponse>> SignUp(UserSignUpRequest request)
     {
-        var isUsernameValid = IsValidUsername(request.Username);
-        var isPasswordValid = IsValidPassword(request.Password);
+        try
+        {
+            var isUsernameValid = IsValidUsername(request.Username);
+            var isPasswordValid = IsValidPassword(request.Password);
 
-        if (isUsernameValid && isPasswordValid)
-        {
-            var createdUser = await _userService.CreateUser(request);
-            if (createdUser == null)
+            if (isUsernameValid && isPasswordValid)
             {
-                return BadRequest("User Creation Failed!");
+                var createdUser = await _userService.CreateUser(request);
+                if (createdUser == null)
+                {
+                    return BadRequest("User Creation Failed!");
+                }
+                return Created("users/", new UserSignUpResponse(createdUser.Name, createdUser.Username));
             }
-            return Created("users/", new UserSignUpResponse(createdUser.Name, createdUser.Username));
+            else
+            {
+                return BadRequest("Provided arguments doesn't meet the requirements!");
+            }
         }
-        else
+        catch (Exception e)
         {
-            return BadRequest("Provided arguments doesn't meet the requirements!");
+            return StatusCode(500, "Internal Server Error!");
         }
     }
 
@@ -72,14 +79,21 @@ public class UserController : ControllerBase
     [Produces("application/json")]
     public async Task<ActionResult<UserLoginResponse>> Login(UserLoginRequest request)
     {
-        var token = await _userService.SignIn(request);
-        if (token == null)
+        try
         {
-            return BadRequest("Authentication Failed!");
-        }
+            var token = await _userService.SignIn(request);
+            if (token == null)
+            {
+                return BadRequest("Authentication Failed!");
+            }
 
-        var response = new UserLoginResponse(request.Username, token);
-        return Ok(response);
+            var response = new UserLoginResponse(request.Username, token);
+            return Ok(response);
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, "Internal Server Error!");
+        }
     }
     
     /// <summary>
@@ -98,12 +112,19 @@ public class UserController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<string>> DeleteUser(UserDeleteRequest request)
     {
-        var isDeleted = await _userService.DeleteUser(request);
-        if (isDeleted)
+        try
         {
-            return Ok();
+            var isDeleted = await _userService.DeleteUser(request);
+            if (isDeleted)
+            {
+                return Ok();
+            }
+            return BadRequest("User deletion failed!");
         }
-        return BadRequest("User deletion failed!");
+        catch (Exception e)
+        {
+            return StatusCode(500, "Internal Server Error!");
+        }
     }
 
     private bool IsValidUsername(string username)
