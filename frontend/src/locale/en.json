@@ -9,5 +9,13 @@
   "fields_cannot_be_empty": "Fields cannot be kept empty",
   "signup": "Sign Up",
   "full_name": "Full name",
-  "enter_valid_number": "Invalid Input: Please enter a valid number"
+  "enter_valid_number": "Invalid Input: Please enter a valid number",
+  "re_password": "Re-password",
+  "have_account": "Already have an account? Login",
+  "un_matching_passwords": "Two passwords do not match",
+  "weak_password_strength": "Password must include at least 8 characters, at least one Capital letter and at least one number",
+  "weak_username_strength": "Username must include at least 4 characters. Only letters and numbers are allowed",
+  "empty_fields": "Fields cannot be kept empty",
+  "registration_success": "User registration successful",
+  "unknown_error": "Unknown error occurred"
 }

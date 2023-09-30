@@ -62,7 +62,7 @@ export default {
           :disabled="disabled"
           name="checkbox"
           @input="onInput($event)"
-          :placeholder="placeholder" :required="required">
+          :placeholder="placeholder && $t(placeholder)" :required="required">
       <label class="form-checkbox">{{ $t(label) }}</label>
     </div>
     <div class="form-group" v-else>
@@ -72,7 +72,7 @@ export default {
           :value="modelValue" :type="type"
           :disabled="disabled"
           @input="onInput($event)"
-          :placeholder="placeholder" :required="required">
+          :placeholder="placeholder && $t(placeholder)" :required="required">
       <InputError v-show="needValidation && invalidData" :message="$t('enter_valid_number')"/>
     </div>
   </div>

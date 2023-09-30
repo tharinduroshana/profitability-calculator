@@ -6,5 +6,16 @@
   "log_in": "Kirjaudu sisään",
   "signup_text": "Eikö sinulla ole tiliä? Kirjaudu",
   "auth_failure": "Todennusvirhe",
-  "fields_cannot_be_empty": "Kenttiä ei voi pitää tyhjinä"
+  "fields_cannot_be_empty": "Kenttiä ei voi pitää tyhjinä",
+  "signup": "Kirjaudu",
+  "full_name": "Koko nimi",
+  "enter_valid_number": "Virheellinen syöttö: Anna kelvollinen numero",
+  "re_password": "Salasana uudelleen",
+  "have_account": "Onko sinulla jo tili? Kirjaudu sisään",
+  "un_matching_passwords": "Kaksi salasanaa eivät täsmää",
+  "weak_password_strength": "Salasanassa on oltava vähintään 8 merkkiä, vähintään yksi iso kirjain ja vähintään yksi numero",
+  "weak_username_strength": "Käyttäjätunnuksessa on oltava vähintään 4 merkkiä. Vain kirjaimet ja numerot ovat sallittuja",
+  "empty_fields": "Kenttiä ei voi pitää tyhjinä",
+  "registration_success": "Käyttäjän rekisteröinti onnistui",
+  "unknown_error": "Tapahtui tuntematon virhe"
 }
