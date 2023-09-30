@@ -35,7 +35,8 @@ public class UserController : ControllerBase
     [HttpPost("signup")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<User>> SignUp(UserSignUpRequest request)
+    [Produces("application/json")]
+    public async Task<ActionResult<UserSignUpResponse>> SignUp(UserSignUpRequest request)
     {
         var isUsernameValid = IsValidUsername(request.Username);
         var isPasswordValid = IsValidPassword(request.Password);
@@ -68,7 +69,8 @@ public class UserController : ControllerBase
     [HttpPost("login")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<string>> Login(UserLoginRequest request)
+    [Produces("application/json")]
+    public async Task<ActionResult<UserLoginResponse>> Login(UserLoginRequest request)
     {
         var token = await _userService.SignIn(request);
         if (token == null)

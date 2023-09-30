@@ -28,7 +28,8 @@ public class ProfitabilityCalculationController : ControllerBase
     [HttpPost]
     [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public IActionResult CalculateProfitability(ProfitabilityCalculationRequest request)
+    [Produces("application/json")]
+    public ActionResult<ProfitabilityCalculationResponse> CalculateProfitability(ProfitabilityCalculationRequest request)
     {
         var profitabilityCalculation = ProfitabilityCalculation.InitializeCalculation(request.PricePerKilometre,
             request.PricePerHour, request.NoOfKilometres, request.NoOfHours, request.Income);
