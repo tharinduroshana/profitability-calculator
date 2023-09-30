@@ -55,7 +55,8 @@ export default {
       if (status === 401) {
         this.alertStore.showPopUpAlertWithFunction("Authorization failure!", "Authorize", () => this.routeToLogin())
       } else if (status === 400) {
-        this.alertStore.showAlert("Calculation failed due to illegal arguments!");
+        this.alertStore.showPopUpAlert("Calculation failed due to illegal arguments!");
+        this.isLoading = false;
       } else {
         this.isLoading = false;
         this.$router.push({name: "results", replace: true});
