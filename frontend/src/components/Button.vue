@@ -1,7 +1,7 @@
 <script>
 /*
 * Button Component
-* @text: Text for the button component
+* @text: Text key for the button component
 * @type: Type of the button element
 * */
 import {ButtonTypes} from "@/utils/enums";
@@ -19,7 +19,7 @@ export default {
 
 <template>
   <div class="form-btn">
-    <button :type="type" @click="$emit('btn-click')" class="submit-btn">{{text}}</button>
+    <button :type="type" @click="$emit('btn-click')" class="submit-btn">{{$t(text)}}</button>
   </div>
 </template>
 

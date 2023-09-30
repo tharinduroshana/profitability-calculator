@@ -65,20 +65,20 @@ export default {
         <h5 class="title">{{ $t('login') }}</h5>
         <form @submit="onSubmit">
           <div class="row">
-            <InputBox v-model="username" :size="InputSizes.FULL" :label="$t('username')" :placeholder="$t('username')"
+            <InputBox v-model="username" :size="InputSizes.FULL" label="username" placeholder="username"
                       :type="InputTypes.TEXT" :required="true"/>
           </div>
           <div class="row">
-            <InputBox v-model="password" :size="InputSizes.FULL" :label="$t('password')" :placeholder="$t('password')"
+            <InputBox v-model="password" :size="InputSizes.FULL" label="password" placeholder="password"
                       :type="InputTypes.PASSWORD" :required="true"/>
           </div>
           <div class="row">
-            <InputBox :size="InputSizes.FULL" :label="$t('remember_me')"
+            <InputBox :size="InputSizes.FULL" label="remember_me"
                       :type="InputTypes.CHECKBOX"/>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <Button :type="ButtonTypes.SUBMIT" :text="$t('log_in')"/>
+              <Button :type="ButtonTypes.SUBMIT" text="log_in"/>
             </div>
           </div>
           <div class="row">

@@ -4,7 +4,7 @@ import InputError from "@/components/InputError.vue";
 
 /*
 * InputBox Component
-* @label: Label for the Input Box
+* @label: Label key for the Input Box
 * @size: Applies as the class name to declare size of the input field
 * @type: Type of the input field
 * @disabled: Sets disabled property for input element
@@ -63,17 +63,17 @@ export default {
           name="checkbox"
           @input="onInput($event)"
           :placeholder="placeholder" :required="required">
-      <label class="form-checkbox">{{ label }}</label>
+      <label class="form-checkbox">{{ $t(label) }}</label>
     </div>
     <div class="form-group" v-else>
-      <span class="form-label">{{ label }}</span>
+      <span class="form-label">{{ $t(label) }}</span>
       <input
           :class="['form-control', disabled ? 'disabled-input' : '', needValidation && invalidData ? 'error-input-box' : '']"
           :value="modelValue" :type="type"
           :disabled="disabled"
           @input="onInput($event)"
           :placeholder="placeholder" :required="required">
-      <InputError v-show="needValidation && invalidData" message="Invalid Input: Please enter a valid number"/>
+      <InputError v-show="needValidation && invalidData" :message="$t('enter_valid_number')"/>
     </div>
   </div>
 </template>
