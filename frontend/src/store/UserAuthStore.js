@@ -26,8 +26,10 @@ export const useUserAuthStore = defineStore("userAuthStore", {
                     headers: {"Content-Type": "application/json"},
                     body: JSON.stringify(userData)
                 });
-                status = response.status;
-                this._storeUser(await response.json());
+                if (status === 200) {
+                    status = response.status;
+                    this._storeUser(await response.json());
+                }
             } catch (e) {
                 console.log(e);
             }
