@@ -4,16 +4,12 @@ import {createApp} from 'vue'
 import {createPinia} from "pinia";
 import piniaPersist from 'pinia-plugin-persist'
 import App from './App.vue'
-import { createI18n } from 'vue-i18n'
-import EN from './locale/en.json';
-import FI from './locale/fi.json';
+import {createI18n} from 'vue-i18n'
+import {messages} from "@/utils/languages";
 
 const i18n = new createI18n({
-    locale: 'EN',
-    messages: {
-        EN: EN,
-        FI: FI
-    }
+    locale: "EN",
+    messages: messages
 })
 
 const pinia = createPinia()

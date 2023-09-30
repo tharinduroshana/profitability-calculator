@@ -3,6 +3,7 @@ import InputBox from "@/components/InputBox.vue";
 import Button from "@/components/Button.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
 import {useCalculationResultStore} from "@/store/CalculationResultStore";
+import LanguageSelector from "@/components/LanguageSelector.vue";
 
 /*
 * CalculationResultsView Screen
@@ -22,7 +23,7 @@ export default {
       return InputSizes
     }
   },
-  components: {Button, InputBox},
+  components: {LanguageSelector, Button, InputBox},
   methods: {
     onSubmit(e) {
       e.preventDefault();
@@ -40,6 +41,7 @@ export default {
   <div class="container">
     <div class="row">
       <div class="general-form">
+        <LanguageSelector />
         <h5 class="title">{{ $t('profitability_calculator') }}</h5>
         <form @submit="onSubmit">
           <div class="row">
