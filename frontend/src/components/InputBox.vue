@@ -47,7 +47,7 @@ export default {
   methods: {
     onInput(event) {
       const value = event.target.value;
-      this.invalidData = this.needValidation && (event.target.validity.badInput || event.target.value === "");
+      this.invalidData = this.needValidation && (event.target.validity.badInput || event.target.value === "" || event.target.value < 0);
       this.$emit('update:modelValue', value)
     }
   },
