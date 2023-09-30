@@ -38,15 +38,14 @@ export default {
         if (status === 200) {
           this.$router.push({name: "calculator", replace: true});
         } else {
-          this.alertStore.showPopUpAlert(this.$t('auth_failure'));
+          this.alertStore.showPopUpAlert("auth_failure");
         }
       } else {
-        this.alertStore.showPopUpAlert(this.$t('fields_cannot_be_empty'));
+        this.alertStore.showPopUpAlert("fields_cannot_be_empty");
       }
     },
     validateUserInputs() {
       return !(!this.username && !this.password);
-
     }
   },
   setup() {

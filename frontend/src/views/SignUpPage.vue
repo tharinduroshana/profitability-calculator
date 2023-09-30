@@ -40,27 +40,27 @@ export default {
         });
         const status = response.status;
         if (status === 201) {
-          this.alertStore.showPopUpAlertWithFunction(this.$t('registration_success'), this.$t('login'), () => this.routeToLogin())
+          this.alertStore.showPopUpAlertWithFunction("registration_success", "login", () => this.routeToLogin())
         } else {
-          this.alertStore.showPopUpAlert(this.$t('unknown_error'));
+          this.alertStore.showPopUpAlert("unknown_error");
         }
       }
     },
     validateInputs() {
       if (!this.name && !this.username && !this.password && !this.re_password) {
-        this.alertStore.showPopUpAlert(this.$t('empty_fields'));
+        this.alertStore.showPopUpAlert("empty_fields");
         return false;
       }
       if (!this.matchUsername(this.username)) {
-        this.alertStore.showPopUpAlert(this.$t('weak_username_strength'));
+        this.alertStore.showPopUpAlert("weak_username_strength");
         return false;
       }
       if (!this.matchPassword(this.password)) {
-        this.alertStore.showPopUpAlert(this.$t('weak_password_strength'));
+        this.alertStore.showPopUpAlert("weak_password_strength");
         return false;
       }
       if (this.password !== this.re_password) {
-        this.alertStore.showPopUpAlert(this.$t('un_matching_passwords'));
+        this.alertStore.showPopUpAlert("un_matching_passwords");
         return false;
       }
       return true;

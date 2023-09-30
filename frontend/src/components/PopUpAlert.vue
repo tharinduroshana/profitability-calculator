@@ -36,7 +36,7 @@ export default {
       <div class="container signup-page">
         <div class="row">
           <div class="general-form">
-            <p>{{ message }}</p>
+            <p>{{ $t(message) }}</p>
             <div class="row">
               <div class="col-md-12">
                 <Button @btn-click="onClose()" :type="ButtonTypes.SUBMIT" :text="buttonText"/>
@@ -45,7 +45,6 @@ export default {
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>

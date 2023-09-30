@@ -9,7 +9,7 @@ export const usePopUpAlertStore = defineStore("popUpAlertStore", {
             showAlert: false,
             message: "",
             onClose: null,
-            buttonText: "Close"
+            buttonText: "close"
         };
     },
     actions: {

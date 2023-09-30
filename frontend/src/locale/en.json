@@ -17,5 +17,6 @@
   "weak_username_strength": "Username must include at least 4 characters. Only letters and numbers are allowed",
   "empty_fields": "Fields cannot be kept empty",
   "registration_success": "User registration successful",
-  "unknown_error": "Unknown error occurred"
+  "unknown_error": "Unknown error occurred",
+  "close": "Close"
 }

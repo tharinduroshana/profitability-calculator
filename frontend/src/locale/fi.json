@@ -17,5 +17,6 @@
   "weak_username_strength": "Käyttäjätunnuksessa on oltava vähintään 4 merkkiä. Vain kirjaimet ja numerot ovat sallittuja",
   "empty_fields": "Kenttiä ei voi pitää tyhjinä",
   "registration_success": "Käyttäjän rekisteröinti onnistui",
-  "unknown_error": "Tapahtui tuntematon virhe"
+  "unknown_error": "Tapahtui tuntematon virhe",
+  "close": "Kiinni"
 }
