@@ -18,5 +18,21 @@
   "empty_fields": "Kenttiä ei voi pitää tyhjinä",
   "registration_success": "Käyttäjän rekisteröinti onnistui",
   "unknown_error": "Tapahtui tuntematon virhe",
-  "close": "Kiinni"
+  "close": "Kiinni",
+  "price_per_km": "Hinta per kilometri",
+  "price_charged_per_km": "Hinta kilometriltä",
+  "price_per_hour": "Hinta per tunti",
+  "price_charged_per_hour": "Hinta veloitetaan tunnilta",
+  "kilometres": "Kilometrejä",
+  "no_of_kms": "Kilometrien lukumäärä",
+  "hours": "Tuntia",
+  "no_of_hours": "Tuntien lukumäärä",
+  "income": "Tulo",
+  "total_income": "Kokonaistulot",
+  "calculating_btn_text": "Lasketaan...",
+  "calculate_profitability": "Laske kannattavuus",
+  "profitability_calculator": "Kannattavuuslaskuri",
+  "calculation_failed_wrong_args": "Laskenta epäonnistui laittomien argumenttien vuoksi",
+  "authorization_failure": "Valtuutusvirhe",
+  "authorize": "Valtuuta"
 }

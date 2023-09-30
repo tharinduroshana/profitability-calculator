@@ -53,9 +53,9 @@ export default {
       const status = await store.calculateProfitability(inputData);
 
       if (status === 401) {
-        this.alertStore.showPopUpAlertWithFunction("Authorization failure!", "Authorize", () => this.routeToLogin())
+        this.alertStore.showPopUpAlertWithFunction("authorization_failure", "authorize", () => this.routeToLogin())
       } else if (status === 400) {
-        this.alertStore.showPopUpAlert("Calculation failed due to illegal arguments!");
+        this.alertStore.showPopUpAlert("calculation_failed_wrong_args");
         this.isLoading = false;
       } else {
         this.isLoading = false;
@@ -82,38 +82,38 @@ export default {
   <div class="container">
     <div class="row">
       <div class="general-form">
-        <h5 class="title">Profitability Calculator</h5>
+        <h5 class="title">{{ $t('profitability_calculator') }}</h5>
         <form @submit="onSubmit">
           <div class="row">
-            <InputBox v-model="pricePerKilometre" :size="InputSizes.HALF" label="Price per Kilometre"
+            <InputBox v-model="pricePerKilometre" :size="InputSizes.HALF" label="price_per_km"
                       :needValidation="true"
-                      placeholder="Price charged for a kilometre"
+                      placeholder="price_charged_per_km"
                       :type="InputTypes.NUMBER" :required="true"/>
-            <InputBox v-model="pricePerHour" :size="InputSizes.HALF" label="Price per Hour" :needValidation="true"
-                      placeholder="Price charged for an hour"
-                      :type="InputTypes.NUMBER" :required="true"/>
-          </div>
-          <div class="row">
-            <InputBox v-model="noOfKilometres" :size="InputSizes.HALF" label="Kilometres"
-                      placeholder="Number of kilometres" :needValidation="true"
-                      :type="InputTypes.NUMBER" :required="true"/>
-            <InputBox v-model="noOfHours" :size="InputSizes.HALF" :needValidation="true" label="Hours"
-                      placeholder="Number of hours"
+            <InputBox v-model="pricePerHour" :size="InputSizes.HALF" label="price_per_hour" :needValidation="true"
+                      placeholder="price_charged_per_hour"
                       :type="InputTypes.NUMBER" :required="true"/>
           </div>
           <div class="row">
-            <InputBox v-model="income" :size="InputSizes.FULL" :needValidation="true" label="Income"
-                      placeholder="Total income"
+            <InputBox v-model="noOfKilometres" :size="InputSizes.HALF" label="kilometres"
+                      placeholder="no_of_kms" :needValidation="true"
+                      :type="InputTypes.NUMBER" :required="true"/>
+            <InputBox v-model="noOfHours" :size="InputSizes.HALF" :needValidation="true" label="hours"
+                      placeholder="no_of_hours"
+                      :type="InputTypes.NUMBER" :required="true"/>
+          </div>
+          <div class="row">
+            <InputBox v-model="income" :size="InputSizes.FULL" :needValidation="true" label="income"
+                      placeholder="total_income"
                       :type="InputTypes.NUMBER" :required="true"/>
           </div>
           <div class="row" v-if="isLoading">
             <div class="col-md-12">
-              <LoadingButton text="Calculating..."/>
+              <LoadingButton text="calculating_btn_text"/>
             </div>
           </div>
           <div class="row" v-else>
             <div class="col-md-12">
-              <Button :type="ButtonTypes.SUBMIT" text="Calculate Profitability"/>
+              <Button :type="ButtonTypes.SUBMIT" text="calculate_profitability"/>
             </div>
           </div>
         </form>

@@ -18,5 +18,21 @@
   "empty_fields": "Fields cannot be kept empty",
   "registration_success": "User registration successful",
   "unknown_error": "Unknown error occurred",
-  "close": "Close"
+  "close": "Close",
+  "price_per_km": "Price per Kilometre",
+  "price_charged_per_km": "Price charged for a kilometre",
+  "price_per_hour": "Price per Hour",
+  "price_charged_per_hour": "Price charged for an hour",
+  "kilometres": "Kilometres",
+  "no_of_kms": "Number of kilometres",
+  "hours": "Hours",
+  "no_of_hours": "Number of hours",
+  "income": "Income",
+  "total_income": "Total income",
+  "calculating_btn_text": "Calculating...",
+  "calculate_profitability": "Calculate Profitability",
+  "profitability_calculator": "Profitability Calculator",
+  "calculation_failed_wrong_args": "Calculation failed due to illegal arguments",
+  "authorization_failure": "Authorization failure",
+  "authorize": "Authorize"
 }
