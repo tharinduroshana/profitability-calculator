@@ -62,29 +62,29 @@ export default {
   <div class="container login-page">
     <div class="row">
       <div class="general-form">
-        <h5 class="title">Login</h5>
+        <h5 class="title">{{ $t('login') }}</h5>
         <form @submit="onSubmit">
           <div class="row">
-            <InputBox v-model="username" :size="InputSizes.FULL" label="Username" placeholder="Username"
+            <InputBox v-model="username" :size="InputSizes.FULL" :label="$t('username')" :placeholder="$t('username')"
                       :type="InputTypes.TEXT" :required="true"/>
           </div>
           <div class="row">
-            <InputBox v-model="password" :size="InputSizes.FULL" label="Password" placeholder="Password"
+            <InputBox v-model="password" :size="InputSizes.FULL" :label="$t('password')" :placeholder="$t('password')"
                       :type="InputTypes.PASSWORD" :required="true"/>
           </div>
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="Remember me"
+            <InputBox :size="InputSizes.FULL" :label="$t('remember_me')"
                       :type="InputTypes.CHECKBOX"/>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <Button :type="ButtonTypes.SUBMIT" text="Log In"/>
+              <Button :type="ButtonTypes.SUBMIT" :text="$t('log_in')"/>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <router-link class="sign-up-link" :to="{ name: 'signup'}">
-                <div class="sign-up-label">Don't have an account? Sign Up</div>
+                <div class="sign-up-label">{{ $t('signup_text') }}</div>
               </router-link>
             </div>
           </div>
