@@ -34,5 +34,9 @@
   "profitability_calculator": "Profitability Calculator",
   "calculation_failed_wrong_args": "Calculation failed due to illegal arguments",
   "authorization_failure": "Authorization failure",
-  "authorize": "Authorize"
+  "authorize": "Authorize",
+  "total_distance_based_costs": "Total Distance Based Cost",
+  "total_time_based_costs": "Total Time Based Cost",
+  "profitability": "Profitability",
+  "back_to_calculator": "Back to Calculator"
 }

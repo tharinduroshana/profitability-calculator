@@ -34,5 +34,9 @@
   "profitability_calculator": "Kannattavuuslaskuri",
   "calculation_failed_wrong_args": "Laskenta epäonnistui laittomien argumenttien vuoksi",
   "authorization_failure": "Valtuutusvirhe",
-  "authorize": "Valtuuta"
+  "authorize": "Valtuuta",
+  "total_distance_based_costs": "Etäisyyteen perustuvat kokonaiskustannukset",
+  "total_time_based_costs": "Aikaperusteiset kokonaiskustannukset",
+  "profitability": "Kannattavuus",
+  "back_to_calculator": "Takaisin laskimeen"
 }

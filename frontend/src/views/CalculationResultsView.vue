@@ -40,31 +40,31 @@ export default {
   <div class="container">
     <div class="row">
       <div class="general-form">
-        <h5 class="title">Profitability Calculator</h5>
+        <h5 class="title">{{ $t('profitability_calculator') }}</h5>
         <form @submit="onSubmit">
           <div class="row">
             <InputBox :model-value="store.profitabilityCalculation.totalDistanceBasedCost.toString()"
-                      :size="InputSizes.FULL" label="Total Distance Based Cost" :disabled="true"
+                      :size="InputSizes.FULL" label="total_distance_based_costs" :disabled="true"
                       :type="InputTypes.NUMBER"/>
           </div>
           <div class="row">
             <InputBox :model-value="store.profitabilityCalculation.totalTimeBasedCost.toString()"
-                      :size="InputSizes.FULL" label="Total Time Based Cost" :disabled="true"
+                      :size="InputSizes.FULL" label="total_time_based_costs" :disabled="true"
                       :type="InputTypes.NUMBER"/>
           </div>
           <div class="row">
             <InputBox :model-value="store.profitabilityCalculation.income.toString()" :size="InputSizes.FULL"
-                      label="Income" :disabled="true"
+                      label="income" :disabled="true"
                       :type="InputTypes.NUMBER"/>
           </div>
           <div class="row">
             <InputBox :model-value="store.profitabilityCalculation.profitability.toString()" :size="InputSizes.FULL"
-                      label="Profitability" :disabled="true"
+                      label="profitability" :disabled="true"
                       :type="InputTypes.NUMBER"/>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <Button :type="ButtonTypes.SUBMIT" text="Back to Calculator"/>
+              <Button :type="ButtonTypes.SUBMIT" text="back_to_calculator"/>
             </div>
           </div>
         </form>
