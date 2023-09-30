@@ -38,10 +38,10 @@ export default {
         if (status === 200) {
           this.$router.push({name: "calculator", replace: true});
         } else {
-          this.alertStore.showPopUpAlert("Authentication failure!");
+          this.alertStore.showPopUpAlert(this.$t('auth_failure'));
         }
       } else {
-        this.alertStore.showPopUpAlert("Fields cannot be kept empty!");
+        this.alertStore.showPopUpAlert(this.$t('fields_cannot_be_empty'));
       }
     },
     validateUserInputs() {

@@ -4,5 +4,7 @@
   "password": "Password",
   "remember_me": "Remember me",
   "log_in": "Log In",
-  "signup_text": "Don't have an account? Sign Up"
+  "signup_text": "Don't have an account? Sign Up",
+  "auth_failure": "Authentication failure",
+  "fields_cannot_be_empty": "Fields cannot be kept empty"
 }

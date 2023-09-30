@@ -4,5 +4,7 @@
   "password": "Salasana",
   "remember_me": "Muista minut",
   "log_in": "Kirjaudu sisään",
-  "signup_text": "Eikö sinulla ole tiliä? Kirjaudu"
+  "signup_text": "Eikö sinulla ole tiliä? Kirjaudu",
+  "auth_failure": "Todennusvirhe",
+  "fields_cannot_be_empty": "Kenttiä ei voi pitää tyhjinä"
 }
