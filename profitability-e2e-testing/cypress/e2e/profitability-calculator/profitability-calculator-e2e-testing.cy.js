@@ -8,7 +8,7 @@ describe("API Testing - Profitability Calculation", () => {
     cy.fixture("testUserSignUpData").then((userData) => {
       cy.request({ method: "POST", url: "/user/signup", body: userData }).then(
         (response) => {
-          expect(response.status).to.equal(200);
+          expect(response.status).to.equal(201);
         }
       );
     });
