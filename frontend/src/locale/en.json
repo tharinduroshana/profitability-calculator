@@ -38,5 +38,6 @@
   "total_distance_based_costs": "Total Distance Based Cost",
   "total_time_based_costs": "Total Time Based Cost",
   "profitability": "Profitability",
-  "back_to_calculator": "Back to Calculator"
+  "back_to_calculator": "Back to Calculator",
+  "internal_server_error": "Internal Server Error"
 }

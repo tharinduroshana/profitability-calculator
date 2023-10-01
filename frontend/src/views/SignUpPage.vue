@@ -42,6 +42,8 @@ export default {
         const status = response.status;
         if (status === 201) {
           this.alertStore.showPopUpAlertWithFunction("registration_success", "login", () => this.routeToLogin())
+        } else if (status === 500) {
+          this.alertStore.showPopUpAlert("internal_server_error");
         } else {
           this.alertStore.showPopUpAlert("unknown_error");
         }

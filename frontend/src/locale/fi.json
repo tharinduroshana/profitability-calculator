@@ -38,5 +38,6 @@
   "total_distance_based_costs": "Etäisyyteen perustuvat kokonaiskustannukset",
   "total_time_based_costs": "Aikaperusteiset kokonaiskustannukset",
   "profitability": "Kannattavuus",
-  "back_to_calculator": "Takaisin laskimeen"
+  "back_to_calculator": "Takaisin laskimeen",
+  "internal_server_error": "Sisäinen palvelinvirhe"
 }

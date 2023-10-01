@@ -58,9 +58,15 @@ export default {
       } else if (status === 400) {
         this.alertStore.showPopUpAlert("calculation_failed_wrong_args");
         this.isLoading = false;
-      } else {
+      } else if (status === 200) {
         this.isLoading = false;
         this.$router.push({name: "results", replace: true});
+      } else if (status === 500) {
+        this.alertStore.showPopUpAlert("internal_server_error");
+        this.isLoading = false;
+      } else {
+        this.alertStore.showPopUpAlert("unknown_error");
+        this.isLoading = false;
       }
     },
     routeToLogin() {

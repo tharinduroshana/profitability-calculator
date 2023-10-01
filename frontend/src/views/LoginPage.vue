@@ -38,6 +38,8 @@ export default {
         });
         if (status === 200) {
           this.$router.push({name: "calculator", replace: true});
+        } else if (status === 500) {
+          this.alertStore.showPopUpAlert("internal_server_error");
         } else {
           this.alertStore.showPopUpAlert("auth_failure");
         }
