@@ -10,6 +10,7 @@ using Android.App;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CompanyName")]
+[assembly: Application(UsesCleartextTraffic = true)]
 [assembly: AssemblyProduct("ProfitabilityCalculatorMobile.Droid")]
 [assembly: AssemblyCopyright("Copyright © CompanyName Year")]
 [assembly: AssemblyTrademark("CompanyTrademark")]

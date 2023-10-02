@@ -21,7 +21,7 @@
                     <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
                         <Entry FontSize="18" Placeholder="Re-Password" IsPassword="True" x:Name="RePasswordEntry" />
                     </Frame>
-                    <Button Text="Sign Up" />
+                    <Button Text="Sign Up" Clicked="SignUpUser" />
                     <Button Text="Back to Login" Clicked="BackToLoginButtonPressed" />
                 </StackLayout>
             </Frame>
