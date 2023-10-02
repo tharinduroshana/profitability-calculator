@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProfitabilityCalculatorMobile.SignUpPage"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Frame Margin="15" CornerRadius="10">
+                <StackLayout>
+                    <Label Text="Login" FontSize="25" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Full Name" x:Name="FullNameEntry" />
+                    </Frame>
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Username" x:Name="UsernameEntry" />
+                    </Frame>
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Password" IsPassword="True" x:Name="PasswordEntry" />
+                    </Frame>
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Re-Password" IsPassword="True" x:Name="RePasswordEntry" />
+                    </Frame>
+                    <Button Text="Sign Up" />
+                    <Button Text="Back to Login" Clicked="BackToLoginButtonPressed" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

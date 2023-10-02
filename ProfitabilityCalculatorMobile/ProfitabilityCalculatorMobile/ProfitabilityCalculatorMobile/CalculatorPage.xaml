@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProfitabilityCalculatorMobile.CalculatorPage"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Frame Margin="15" CornerRadius="10">
+                <StackLayout>
+                    <Label Text="Login" FontSize="25" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Price per kilometre" x:Name="PricePerKilometre" />
+                    </Frame>
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Kilometres" x:Name="NoOfKilometres" />
+                    </Frame>
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Price per hour" x:Name="PricePerHour" />
+                    </Frame>
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Hours" x:Name="NoOfHours" />
+                    </Frame>
+                    <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
+                        <Entry FontSize="18" Placeholder="Income" x:Name="Income" />
+                    </Frame>
+                    <Button Text="Calculate" Clicked="Calculate" />
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

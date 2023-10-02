@@ -15,3 +15,10 @@ profitability-e2e-testing/node_modules
 profitability-e2e-testing/package-lock.json
 profitability-e2e-testing/.idea
 profitability-e2e-testing/.vscode
+/ProfitabilityCalculatorMobile/.idea/
+/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile/bin/
+/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile/obj/
+/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile.Droid/bin/
+/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile.Droid/obj/
+/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile.iOS/bin/
+/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile/ProfitabilityCalculatorMobile.iOS/obj/
