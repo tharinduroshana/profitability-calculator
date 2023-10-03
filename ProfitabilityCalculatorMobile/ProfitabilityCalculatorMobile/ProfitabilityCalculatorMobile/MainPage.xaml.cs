@@ -11,6 +11,12 @@ using ProfitabilityCalculatorMobile.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
+/*
+ * This screen represents the User login
+ *
+ * Takes user inputs, validates and sends the request to log the user into the application.
+ * Shows AlertDialogs in case an issue occurs.
+ */
 namespace ProfitabilityCalculatorMobile
 {
     public partial class MainPage : ContentPage

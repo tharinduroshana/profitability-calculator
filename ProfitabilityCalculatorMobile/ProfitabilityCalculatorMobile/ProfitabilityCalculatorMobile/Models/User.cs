@@ -1,3 +1,6 @@
+/*
+ * This class acts as the request class for registering users
+ */
 namespace ProfitabilityCalculatorMobile.Models
 {
     public class User

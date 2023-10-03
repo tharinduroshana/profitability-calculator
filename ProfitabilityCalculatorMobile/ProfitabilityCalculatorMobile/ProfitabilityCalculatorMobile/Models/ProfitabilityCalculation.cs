@@ -1,3 +1,6 @@
+/*
+ * This class represents the model class for Profitability calculation
+ */
 namespace ProfitabilityCalculatorMobile.Models
 {
     public class ProfitabilityCalculation

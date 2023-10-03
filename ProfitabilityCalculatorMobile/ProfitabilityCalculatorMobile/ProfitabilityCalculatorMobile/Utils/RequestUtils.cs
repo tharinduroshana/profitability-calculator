@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 
+/*
+ * The RequestUtils class contains SendPostRequest method which sends POST requests for the backend.
+ */
 namespace ProfitabilityCalculatorMobile.Utils
 {
     public class RequestUtils

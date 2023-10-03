@@ -1,3 +1,6 @@
+/*
+ * Contains Base Url for the API. This should be changed in the deployment with the diployed url.
+ */
 namespace ProfitabilityCalculatorMobile
 {
     public static class Constants

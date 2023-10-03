@@ -1,14 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ProfitabilityCalculatorMobile.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+/*
+ * This screen shows profitability calculations to the user
+ *
+ * This page takes saved calculation results from the Shared Preferences and display to the user.
+ */
 namespace ProfitabilityCalculatorMobile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]

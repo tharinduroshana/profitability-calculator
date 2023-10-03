@@ -1,18 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using ProfitabilityCalculatorMobile.Models;
 using ProfitabilityCalculatorMobile.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+/*
+ * This screen represents the Sign Up page
+ *
+ * Takes user inputs, validates and sends the request to create a user account.
+ * Shows AlertDialogs in case an issue occurs.
+ */
 namespace ProfitabilityCalculatorMobile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]

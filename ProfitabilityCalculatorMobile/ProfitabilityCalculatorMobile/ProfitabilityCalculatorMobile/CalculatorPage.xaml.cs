@@ -1,16 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using ProfitabilityCalculatorMobile.Models;
 using ProfitabilityCalculatorMobile.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+/*
+ * This screen represents the profitability calculator for mobile
+ * 
+ * Takes user inputs, validates and sends the request to calculate profitability in the backend.
+ * Shows AlertDialogs in case an issue occurs.
+ */
 namespace ProfitabilityCalculatorMobile
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
