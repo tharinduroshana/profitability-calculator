@@ -28,7 +28,7 @@ export default {
 
 <template>
   <div class="selector-div">
-    <button @click="logOut()" v-show="showLogoutButton" class="log-out-btn">Log Out</button>
+    <button @click="logOut()" v-show="showLogoutButton" class="log-out-btn">{{ $t('log_out') }}</button>
     <LanguageSelector />
   </div>
 </template>

@@ -39,5 +39,6 @@
   "total_time_based_costs": "Total Time Based Cost",
   "profitability": "Profitability",
   "back_to_calculator": "Back to Calculator",
-  "internal_server_error": "Internal Server Error"
+  "internal_server_error": "Internal Server Error",
+  "log_out": "Log Out"
 }

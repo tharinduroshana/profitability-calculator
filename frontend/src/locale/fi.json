@@ -39,5 +39,6 @@
   "total_time_based_costs": "Aikaperusteiset kokonaiskustannukset",
   "profitability": "Kannattavuus",
   "back_to_calculator": "Takaisin laskimeen",
-  "internal_server_error": "Sisäinen palvelinvirhe"
+  "internal_server_error": "Sisäinen palvelinvirhe",
+  "log_out": "kirjautua ulos"
 }
