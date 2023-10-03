@@ -76,10 +76,6 @@ export default {
                       :type="InputTypes.PASSWORD" :required="true"/>
           </div>
           <div class="row">
-            <InputBox :size="InputSizes.FULL" label="remember_me"
-                      :type="InputTypes.CHECKBOX"/>
-          </div>
-          <div class="row">
             <div class="col-md-12">
               <Button :type="ButtonTypes.SUBMIT" text="log_in"/>
             </div>
@@ -103,7 +99,7 @@ export default {
 }
 
 .login-page .form-btn {
-  margin-top: 0;
+  margin-top: 20px;
 }
 
 .sign-up-label {
