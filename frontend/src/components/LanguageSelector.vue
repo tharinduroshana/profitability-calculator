@@ -29,27 +29,19 @@ export default {
 </script>
 
 <template>
-  <div class="selector-div">
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-              aria-expanded="false">
-        {{ locale || 'EN' }}
-      </button>
-      <ul class="dropdown-menu">
-        <li v-for="localeItem in Object.keys(messages)"><a @click="onLocaleClick(localeItem)" class="dropdown-item"
-                                                           href="#">{{ localeItem }}</a></li>
-      </ul>
-    </div>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+            aria-expanded="false">
+      {{ locale || 'EN' }}
+    </button>
+    <ul class="dropdown-menu">
+      <li v-for="localeItem in Object.keys(messages)"><a @click="onLocaleClick(localeItem)" class="dropdown-item"
+                                                         href="#">{{ localeItem }}</a></li>
+    </ul>
   </div>
 </template>
 
 <style scoped>
-.selector-div {
-  display: flex;
-  justify-content: end;
-  margin-bottom: 10px;
-}
-
 .dropdown-menu {
   min-width: 60px !important;
   font-size: 10px !important;

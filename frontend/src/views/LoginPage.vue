@@ -5,7 +5,7 @@ import LoadingButton from "@/components/LoadingButton.vue";
 import {ButtonTypes, InputSizes, InputTypes} from "@/utils/enums";
 import {useUserAuthStore} from "@/store/UserAuthStore";
 import {usePopUpAlertStore} from "@/store/PopUpAlertStore";
-import LanguageSelector from "@/components/LanguageSelector.vue";
+import Header from "@/components/Header.vue";
 
 export default {
   name: "LoginPage",
@@ -27,7 +27,7 @@ export default {
       rememberMe: false
     }
   },
-  components: {LanguageSelector, LoadingButton, Button, InputBox},
+  components: {Header, LoadingButton, Button, InputBox},
   methods: {
     async onSubmit(e) {
       e.preventDefault();
@@ -64,7 +64,7 @@ export default {
   <div class="container login-page">
     <div class="row">
       <div class="general-form">
-        <LanguageSelector />
+        <Header />
         <h5 class="title">{{ $t('login') }}</h5>
         <form @submit="onSubmit">
           <div class="row">

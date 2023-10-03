@@ -6,7 +6,7 @@ import LoadingButton from "@/components/LoadingButton.vue";
 import {useCalculationResultStore} from "@/store/CalculationResultStore";
 import {usePopUpAlertStore} from "@/store/PopUpAlertStore";
 import {useUserAuthStore} from "@/store/UserAuthStore";
-import LanguageSelector from "@/components/LanguageSelector.vue";
+import Header from "@/components/Header.vue";
 
 /*
 * ProfitabilityCalculator Screen
@@ -37,7 +37,7 @@ export default {
       income: "",
     }
   },
-  components: {LanguageSelector, Button, InputBox, LoadingButton},
+  components: {Header, Button, InputBox, LoadingButton},
   methods: {
     async onSubmit(e) {
       e.preventDefault();
@@ -89,7 +89,7 @@ export default {
   <div class="container">
     <div class="row">
       <div class="general-form">
-        <LanguageSelector />
+        <Header />
         <h5 class="title">{{ $t('profitability_calculator') }}</h5>
         <form @submit="onSubmit">
           <div class="row">
