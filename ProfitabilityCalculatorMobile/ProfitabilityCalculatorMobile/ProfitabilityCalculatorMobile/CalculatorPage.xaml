@@ -3,12 +3,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProfitabilityCalculatorMobile.CalculatorPage"
-             NavigationPage.HasNavigationBar="false">
+             NavigationPage.HasNavigationBar="false" BackgroundImageSource="background.jpg">
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand">
             <Frame Margin="15" CornerRadius="10">
                 <StackLayout>
-                    <Label Text="Login" FontSize="25" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                    <Label Text="Profitability Calculator" FontSize="25" HorizontalTextAlignment="Center"
+                           FontAttributes="Bold" Margin="0,0,0,10" />
                     <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
                         <Entry FontSize="18" Placeholder="Price per kilometre" x:Name="PricePerKilometre" />
                     </Frame>
@@ -25,6 +26,7 @@
                         <Entry FontSize="18" Placeholder="Income" x:Name="Income" />
                     </Frame>
                     <Button Text="Calculate" Clicked="Calculate" />
+                    <Button Text="Log Out" Clicked="LogOut" />
                 </StackLayout>
             </Frame>
         </StackLayout>

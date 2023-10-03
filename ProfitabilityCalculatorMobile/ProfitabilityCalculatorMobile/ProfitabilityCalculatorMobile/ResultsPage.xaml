@@ -3,34 +3,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProfitabilityCalculatorMobile.ResultsPage"
-             NavigationPage.HasNavigationBar="false">
+             NavigationPage.HasNavigationBar="false" BackgroundImageSource="background.jpg">
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand">
             <Frame Margin="15" CornerRadius="10">
                 <StackLayout>
-                    <Label Text="Login" FontSize="25" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                    <Label Text="Calculation Results" FontSize="25" HorizontalTextAlignment="Center"
+                           FontAttributes="Bold" Margin="0,0,0,10" />
                     <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
                         <StackLayout>
-                            <Label Text="Distance based costs"></Label>
-                            <Entry FontSize="18" Placeholder="Total " x:Name="DistanceBasedCosts" />
+                            <Label Margin="5,10,0,0" Text="Distance based costs"></Label>
+                            <Entry IsEnabled="False" FontSize="18" Placeholder="Total " x:Name="DistanceBasedCosts" />
                         </StackLayout>
                     </Frame>
                     <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
                         <StackLayout>
-                            <Label Text="Time based costs"></Label>
-                            <Entry FontSize="18" Placeholder="Total " x:Name="TimeBasedCosts" />
+                            <Label Margin="5,10,0,0" Text="Time based costs"></Label>
+                            <Entry IsEnabled="False" FontSize="18" Placeholder="Total " x:Name="TimeBasedCosts" />
                         </StackLayout>
                     </Frame>
                     <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
                         <StackLayout>
-                            <Label Text="Income"></Label>
-                            <Entry FontSize="18" Placeholder="Total " x:Name="Income" />
+                            <Label Margin="5,10,0,0" Text="Income"></Label>
+                            <Entry IsEnabled="False" FontSize="18" Placeholder="Total " x:Name="Income" />
                         </StackLayout>
                     </Frame>
                     <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
                         <StackLayout>
-                            <Label Text="Profitability"></Label>
-                            <Entry FontSize="18" Placeholder="Total " x:Name="Profitability" />
+                            <Label Margin="5,10,0,0" Text="Profitability"></Label>
+                            <Entry IsEnabled="False" FontSize="18" Placeholder="Total " x:Name="Profitability" />
                         </StackLayout>
                     </Frame>
                     <Button Text="Back to calculator" Clicked="BackToCalculatorPressed" />

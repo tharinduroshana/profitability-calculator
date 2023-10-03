@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
+using ProfitabilityCalculatorMobile.Models;
+using ProfitabilityCalculatorMobile.Utils;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,7 +29,77 @@ namespace ProfitabilityCalculatorMobile
 
         private async void Calculate(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ResultsPage());
+            var costPerKilometre = PricePerKilometre.Text;
+            var costPerHour = PricePerHour.Text;
+            var kilometres = NoOfKilometres.Text;
+            var hours = NoOfHours.Text;
+            var income = Income.Text;
+
+            var isValid = await ValidateInputs(costPerKilometre, costPerHour, kilometres, hours, income);
+
+            if (isValid)
+            {
+                var profitabilityCalculationReq = new ProfitabilityCalculation
+                {
+                    pricePerKilometre = double.Parse(costPerKilometre),
+                    pricePerHour = double.Parse(costPerHour),
+                    noOfKilometres = double.Parse(kilometres),
+                    noOfHours = double.Parse(hours),
+                    income = double.Parse(income),
+                };
+
+                var response = await RequestUtils.SendPostRequest(Constants.ApiBaseUrl + "/profitabilityCalculation",
+                    profitabilityCalculationReq, true);
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var jsonString = await response.Content.ReadAsStringAsync();
+                    
+                    Preferences.Set("calculatedResults", jsonString);
+                    
+                    await Navigation.PushAsync(new ResultsPage());
+                    Navigation.RemovePage(this);
+                }
+            }
+        }
+
+        private async Task<bool> ValidateInputs(string costPerKilometre, string costPerHour, string kilometres,
+            string hours,
+            string income)
+        {
+            if (string.IsNullOrEmpty(costPerKilometre) && string.IsNullOrEmpty(costPerHour) &&
+                string.IsNullOrEmpty(kilometres) && string.IsNullOrEmpty(hours) && string.IsNullOrEmpty(income))
+            {
+                await DisplayAlert("Input Error", "Inputs cannot be left empty", "Ok");
+                return false;
+            }
+
+            if (double.TryParse(costPerKilometre, out double costPerKilometreDouble) &&
+                double.TryParse(costPerHour, out double costPerHourDouble) &&
+                double.TryParse(kilometres, out double kilometresDouble) &&
+                double.TryParse(hours, out double hoursDouble) && double.TryParse(income, out double incomeDouble))
+            {
+                if (costPerKilometreDouble < 0 || costPerHourDouble < 0 || kilometresDouble < 0 || hoursDouble < 0 || incomeDouble < 0)
+                {
+                    await DisplayAlert("Input Error", "Fields contain invalid numbers", "Ok");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                await DisplayAlert("Input Error", "Fields contain invalid numbers", "Ok");
+                return false;
+            }
+        }
+
+        private async void LogOut(object sender, EventArgs e)
+        {
+            SecureStorage.RemoveAll();
+            await Navigation.PushAsync(new MainPage());
             Navigation.RemovePage(this);
         }
     }

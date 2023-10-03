@@ -4,12 +4,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ProfitabilityCalculatorMobile"
              x:Class="ProfitabilityCalculatorMobile.MainPage"
-             NavigationPage.HasNavigationBar="false" >
+             NavigationPage.HasNavigationBar="false" BackgroundImageSource="background.jpg" >
 
     <StackLayout VerticalOptions="CenterAndExpand">
-        <Frame Margin="15" CornerRadius="10">
-            <StackLayout>
-                <Label Text="Login" FontSize="25" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+        <Frame Margin="15" CornerRadius="10" Opacity="1">
+            <StackLayout Opacity="1">
+                <Label Text="Login" FontSize="25" HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,10" />
                 <Frame BorderColor="Azure" Margin="1" Padding="5,0,5,0" CornerRadius="10">
                     <Entry FontSize="18" Placeholder="Username" x:Name="UsernameEntry" />
                 </Frame>
