@@ -40,25 +40,33 @@ namespace ProfitabilityCalculatorMobile
 
             if (isValid)
             {
-                var user = new User
+                try
                 {
-                    username = username,
-                    password = password
-                };
+                    var user = new User
+                    {
+                        username = username,
+                        password = password
+                    };
 
-                var response = await RequestUtils.SendPostRequest(Constants.ApiBaseUrl + "/user/login", user);
+                    var response = await RequestUtils.SendPostRequest(Constants.ApiBaseUrl + "/user/login", user);
 
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var signInResponse = JsonConvert.DeserializeObject<SignInResponse>(content);
-                    StoreToken(signInResponse.username, signInResponse.token);
-                    await Navigation.PushAsync(new CalculatorPage());
-                    Navigation.RemovePage(this);
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+                        var signInResponse = JsonConvert.DeserializeObject<SignInResponse>(content);
+                        StoreToken(signInResponse.username, signInResponse.token);
+                        await Navigation.PushAsync(new CalculatorPage());
+                        Navigation.RemovePage(this);
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Authentication failed!", "Ok");
+                    }
                 }
-                else
+                catch (Exception exception)
                 {
-                    await DisplayAlert("Input Error", "Authentication failed!", "Ok");
+                    Console.WriteLine(exception);
+                    await DisplayAlert("Error", "Authentication failed!", "Ok");
                 }
             }
             else

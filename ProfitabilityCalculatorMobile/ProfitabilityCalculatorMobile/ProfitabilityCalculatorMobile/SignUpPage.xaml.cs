@@ -93,27 +93,35 @@ namespace ProfitabilityCalculatorMobile
 
             var validInputs = await ValidateInputs(name, username, password, rePassword);
 
-            if (validInputs)
+            try
             {
-                var newUser = new User
+                if (validInputs)
                 {
-                    name = name,
-                    username = username,
-                    password = password
-                };
+                    var newUser = new User
+                    {
+                        name = name,
+                        username = username,
+                        password = password
+                    };
 
-                var statusCode = await SignUpUser(newUser);
+                    var statusCode = await SignUpUser(newUser);
 
-                if (statusCode == HttpStatusCode.Created)
-                {
-                    await DisplayAlert("Success", "The user has been signed up successfully", "Sign In");
-                    await Navigation.PushAsync(new MainPage());
-                    Navigation.RemovePage(this);
+                    if (statusCode == HttpStatusCode.Created)
+                    {
+                        await DisplayAlert("Success", "The user has been signed up successfully", "Sign In");
+                        await Navigation.PushAsync(new MainPage());
+                        Navigation.RemovePage(this);
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "An error has occured while processing the request!", "Ok");
+                    }
                 }
-                else
-                {
-                    await DisplayAlert("Input Error", "An error has occured while processing the request!", "Ok");
-                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                await DisplayAlert("Error", "An error has occured!", "Ok");
             }
         }
     }

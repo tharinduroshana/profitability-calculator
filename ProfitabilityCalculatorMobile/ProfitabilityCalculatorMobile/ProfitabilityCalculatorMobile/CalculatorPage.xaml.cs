@@ -37,29 +37,38 @@ namespace ProfitabilityCalculatorMobile
 
             var isValid = await ValidateInputs(costPerKilometre, costPerHour, kilometres, hours, income);
 
-            if (isValid)
+            try
             {
-                var profitabilityCalculationReq = new ProfitabilityCalculation
+                if (isValid)
                 {
-                    pricePerKilometre = double.Parse(costPerKilometre),
-                    pricePerHour = double.Parse(costPerHour),
-                    noOfKilometres = double.Parse(kilometres),
-                    noOfHours = double.Parse(hours),
-                    income = double.Parse(income),
-                };
+                    var profitabilityCalculationReq = new ProfitabilityCalculation
+                    {
+                        pricePerKilometre = double.Parse(costPerKilometre),
+                        pricePerHour = double.Parse(costPerHour),
+                        noOfKilometres = double.Parse(kilometres),
+                        noOfHours = double.Parse(hours),
+                        income = double.Parse(income),
+                    };
 
-                var response = await RequestUtils.SendPostRequest(Constants.ApiBaseUrl + "/profitabilityCalculation",
-                    profitabilityCalculationReq, true);
+                    var response = await RequestUtils.SendPostRequest(
+                        Constants.ApiBaseUrl + "/profitabilityCalculation",
+                        profitabilityCalculationReq, true);
 
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                    
-                    Preferences.Set("calculatedResults", jsonString);
-                    
-                    await Navigation.PushAsync(new ResultsPage());
-                    Navigation.RemovePage(this);
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var jsonString = await response.Content.ReadAsStringAsync();
+
+                        Preferences.Set("calculatedResults", jsonString);
+
+                        await Navigation.PushAsync(new ResultsPage());
+                        Navigation.RemovePage(this);
+                    }
                 }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                await DisplayAlert("Error", "An error has occured while processing the request!", "Ok");
             }
         }
 
