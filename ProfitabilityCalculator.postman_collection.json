@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "2f3e194e-1b23-4595-b2b0-cf0af9f8d6d0",
+		"name": "ProfitabilityCalculator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "profitabilityCalculation",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0dXNlcjEiLCJlbWFpbCI6InRlc3R1c2VyMSIsIm5iZiI6MTY5NjE4ODE3NiwiZXhwIjoxNjk2Mjc0NTc2LCJpYXQiOjE2OTYxODgxNzYsImlzcyI6IlRoYXJpbmR1IFJhbmF3ZWVyYSIsImF1ZCI6IlByb2ZpdGFiaWxpdHkgQXVkaWVuY2UifQ.M0iIAI7iyH6bK9LWyTWR5rSqWb8B4M-TPN-aigrd41aKVhfhXlttdiXQfuD8s7aBJDio5PohJup2EtC-XXvAfg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pricePerKilometre\": 5,\n    \"PricePerHour\": 10,\n    \"noOfKilometres\": 10,\n    \"noOfHours\": 4,\n    \"income\": 100\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5105/profitabilityCalculation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5105",
+					"path": [
+						"profitabilityCalculation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"testuser1\",\n    \"password\": \"Password@123\",\n    \"name\": \"Test User\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5105/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5105",
+					"path": [
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"testuser1\",\n    \"password\": \"Password@123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5105/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5105",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0dXNlcjEiLCJlbWFpbCI6InRlc3R1c2VyMSIsIm5iZiI6MTY5NjE4ODE3NiwiZXhwIjoxNjk2Mjc0NTc2LCJpYXQiOjE2OTYxODgxNzYsImlzcyI6IlRoYXJpbmR1IFJhbmF3ZWVyYSIsImF1ZCI6IlByb2ZpdGFiaWxpdHkgQXVkaWVuY2UifQ.M0iIAI7iyH6bK9LWyTWR5rSqWb8B4M-TPN-aigrd41aKVhfhXlttdiXQfuD8s7aBJDio5PohJup2EtC-XXvAfg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"testuser1\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5105/user/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5105",
+					"path": [
+						"user",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
