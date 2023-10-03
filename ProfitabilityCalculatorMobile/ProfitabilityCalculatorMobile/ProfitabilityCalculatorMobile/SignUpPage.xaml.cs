@@ -18,7 +18,6 @@ namespace ProfitabilityCalculatorMobile
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignUpPage : ContentPage
     {
-        private const string URL = "http://10.0.2.2:5105/user/signup";
         public SignUpPage()
         {
             InitializeComponent();
@@ -32,7 +31,7 @@ namespace ProfitabilityCalculatorMobile
 
         private async Task<HttpStatusCode> SignUpUser(User user)
         {
-            var response = await RequestUtils.SendPostRequest(URL, user);
+            var response = await RequestUtils.SendPostRequest(Constants.ApiBaseUrl + "/user/signup", user);
             
             return response.StatusCode;
         }
