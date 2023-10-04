@@ -1,0 +1,7 @@
+{
+  "pricePerKilometre": "string",
+  "PricePerHour": 10,
+  "noOfKilometres": -40,
+  "noOfHours": 4,
+  "income": 100
+}
